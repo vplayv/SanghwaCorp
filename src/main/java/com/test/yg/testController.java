@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class testController {
-	@RequestMapping(value = "/yg", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
 		log.info("yg test");
-		return "home";
+		return "login";
 	}
 }
