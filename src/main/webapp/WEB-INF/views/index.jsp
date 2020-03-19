@@ -26,27 +26,27 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-<script src="resources/assets/js/require.min.js"></script>
+<script src="assets/js/require.min.js"></script>
 <script>
 	requirejs.config({
 		baseUrl : '.'
 	});
 </script>
 <!-- Dashboard Core -->
-<link href="resources/assets/css/dashboard.css" rel="stylesheet" />
-<script src="resources/assets/js/dashboard.js"></script>
+<link href="assets/css/dashboard.css" rel="stylesheet" />
+<script src="assets/js/dashboard.js"></script>
 <!-- c3.js Charts Plugin -->
-<link href="resources/assets/plugins/charts-c3/plugin.css"
+<link href="assets/plugins/charts-c3/plugin.css"
 	rel="stylesheet" />
-<script src="resources/assets/plugins/charts-c3/plugin.js"></script>
+<script src="assets/plugins/charts-c3/plugin.js"></script>
 <!-- Google Maps Plugin -->
-<link href="resources/assets/plugins/maps-google/plugin.css"
+<link href="assets/plugins/maps-google/plugin.css"
 	rel="stylesheet" />
-<script src="resources/assets/plugins/maps-google/plugin.js"></script>
+<script src="assets/plugins/maps-google/plugin.js"></script>
 <!-- Input Mask Plugin -->
-<script src="resources/assets/plugins/input-mask/plugin.js"></script>
+<script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
-<script src="resources/assets/plugins/datatables/plugin.js"></script>
+<script src="assets/plugins/datatables/plugin.js"></script>
 </head>
 <body class="">
 	<div class="page">
@@ -55,7 +55,7 @@
 				<div class="container">
 					<div class="d-flex">
 						<a class="header-brand" href="./index.html"> <img
-							src="./demo/brand/tabler.svg" class="header-brand-img"
+							src="demo/brand/tabler.svg" class="header-brand-img"
 							alt="tabler logo">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
