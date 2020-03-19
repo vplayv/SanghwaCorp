@@ -26,20 +26,22 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-<script src="./assets/js/require.min.js"></script>
+<script src="resources/assets/js/require.min.js"></script>
 <script>
-      requirejs.config({
-          baseUrl: '.'
-      });
-    </script>
+	requirejs.config({
+		baseUrl : '.'
+	});
+</script>
 <!-- Dashboard Core -->
 <link href="resources/assets/css/dashboard.css" rel="stylesheet" />
 <script src="resources/assets/js/dashboard.js"></script>
 <!-- c3.js Charts Plugin -->
-<link href="resources/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
+<link href="resources/assets/plugins/charts-c3/plugin.css"
+	rel="stylesheet" />
 <script src="resources/assets/plugins/charts-c3/plugin.js"></script>
 <!-- Google Maps Plugin -->
-<link href="resources/assets/plugins/maps-google/plugin.css" rel="stylesheet" />
+<link href="resources/assets/plugins/maps-google/plugin.css"
+	rel="stylesheet" />
 <script src="resources/assets/plugins/maps-google/plugin.js"></script>
 <!-- Input Mask Plugin -->
 <script src="resources/assets/plugins/input-mask/plugin.js"></script>
@@ -57,11 +59,6 @@
 							alt="tabler logo">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
-							<div class="nav-item d-none d-md-flex">
-								<a href="https://github.com/tabler/tabler"
-									class="btn btn-sm btn-outline-primary" target="_blank">Source
-									code</a>
-							</div>
 							<div class="dropdown d-none d-md-flex">
 								<a class="nav-link icon" data-toggle="dropdown"> <i
 									class="fe fe-bell"></i> <span class="nav-unread"></span>
@@ -148,53 +145,20 @@
 						</div>
 						<div class="col-lg order-lg-first">
 							<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-								<li class="nav-item"><a href="./index.html"
-									class="nav-link"><i class="fe fe-home"></i> Home</a></li>
+								<li class="nav-item"><a href="./index" class="nav-link"><i
+										class="fe fe-home"></i> 보험</a>
+									<div class="dropdown-menu dropdown-menu-arrow">
+										<a href="./cards.html" class="dropdown-item ">보험료 산정</a> <a
+											href="./charts.html" class="dropdown-item ">보험 연동</a>
+									</div></li>
 								<li class="nav-item"><a href="javascript:void(0)"
-									class="nav-link" data-toggle="dropdown"><i
-										class="fe fe-box"></i> Interface</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./cards.html" class="dropdown-item ">Cards design</a>
-										<a href="./charts.html" class="dropdown-item ">Charts</a> <a
-											href="./pricing-cards.html" class="dropdown-item ">Pricing
-											cards</a>
-									</div></li>
+									class="nav-link" data-toggle="dropdown"> <i
+										class="fe fe-box"></i> 동물병원
+								</a></li>
 								<li class="nav-item dropdown"><a href="javascript:void(0)"
 									class="nav-link" data-toggle="dropdown"><i
-										class="fe fe-calendar"></i> Components</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./maps.html" class="dropdown-item ">Maps</a> <a
-											href="./icons.html" class="dropdown-item ">Icons</a> <a
-											href="./store.html" class="dropdown-item ">Store</a> <a
-											href="./blog.html" class="dropdown-item ">Blog</a> <a
-											href="./carousel.html" class="dropdown-item ">Carousel</a>
-									</div></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)"
-									class="nav-link active" data-toggle="dropdown"><i
-										class="fe fe-file"></i> Pages</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./profile.html" class="dropdown-item ">Profile</a> <a
-											href="./login.html" class="dropdown-item ">Login</a> <a
-											href="./register.html" class="dropdown-item ">Register</a> <a
-											href="./forgot-password.html" class="dropdown-item ">Forgot
-											password</a> <a href="./400.html" class="dropdown-item ">400
-											error</a> <a href="./401.html" class="dropdown-item ">401
-											error</a> <a href="./403.html" class="dropdown-item ">403
-											error</a> <a href="./404.html" class="dropdown-item ">404
-											error</a> <a href="./500.html" class="dropdown-item ">500
-											error</a> <a href="./503.html" class="dropdown-item ">503
-											error</a> <a href="./email.html" class="dropdown-item ">Email</a>
-										<a href="./empty.html" class="dropdown-item active">Empty
-											page</a> <a href="./rtl.html" class="dropdown-item ">RTL mode</a>
-									</div></li>
-								<li class="nav-item dropdown"><a
-									href="./form-elements.html" class="nav-link"><i
-										class="fe fe-check-square"></i> Forms</a></li>
-								<li class="nav-item"><a href="./gallery.html"
-									class="nav-link"><i class="fe fe-image"></i> Gallery</a></li>
-								<li class="nav-item"><a href="./docs/index.html"
-									class="nav-link"><i class="fe fe-file-text"></i>
-										Documentation</a></li>
+										class="fe fe-calendar"></i> FAQ</a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -250,16 +214,10 @@
 									<li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
 								</ul>
 							</div>
-							<div class="col-auto">
-								<a href="https://github.com/tabler/tabler"
-									class="btn btn-outline-primary btn-sm">Source code</a>
-							</div>
 						</div>
 					</div>
 					<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-						Copyright © 2019 <a href=".">Tabler</a>. Theme by <a
-							href="https://codecalm.net" target="_blank">codecalm.net</a> All
-						rights reserved.
+						Copyright © 2020 <a href="https://www.dbinc.co.kr/">DB Inc.</a>
 					</div>
 				</div>
 			</div>
