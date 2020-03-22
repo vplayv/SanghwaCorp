@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ page session="false"%> --%>
+<%@ page session="false"%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -21,8 +20,7 @@
 <title>index</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-<script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
-<script src="./assets/js/require.min.js"></script>
+<script src="assets/js/require.min.js"></script>
 <script>
 	requirejs.config({
 		baseUrl : '.'
@@ -41,6 +39,12 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
+<style>
+#dog_emptyprofile {
+	width: 150px;
+	height: 150px;
+}
+</style>
 </head>
 <body class="">
 	<div class="page">
@@ -48,60 +52,60 @@
 			<div class="header py-4">
 				<div class="container">
 					<div class="d-flex">
-						<a class="header-brand" href="./index.html"> <img src="demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
+						<a class="header-brand" href="./index.html">
+							<img src="demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
-							<c:choose>
-								<c:when test="${not empty sessionScope.user}">
-									<div class="dropdown d-none d-md-flex">
-										<a class="nav-link icon" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="nav-unread"></span>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a href="#" class="dropdown-item d-flex"> <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
-												<div>
-													<strong>Nathan</strong> pushed new commit: Fix page load performance issue.
-													<div class="small text-muted">10 minutes ago</div>
-												</div>
-											</a> <a href="#" class="dropdown-item d-flex"> <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
-												<div>
-													<strong>Alice</strong> started new task: Tabler UI design.
-													<div class="small text-muted">1 hour ago</div>
-												</div>
-											</a> <a href="#" class="dropdown-item d-flex"> <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
-												<div>
-													<strong>Rose</strong> deployed new version of NodeJS REST Api V3
-													<div class="small text-muted">2 hours ago</div>
-												</div>
-											</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item text-center">Mark all as read</a>
+							<div class="dropdown d-none d-md-flex">
+								<a class="nav-link icon" data-toggle="dropdown">
+									<i class="fe fe-bell"></i> <span class="nav-unread"></span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+									<a href="#" class="dropdown-item d-flex">
+										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
+										<div>
+											<strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+											<div class="small text-muted">10 minutes ago</div>
 										</div>
-									</div>
-									<div class="dropdown">
-										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown"> <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span> <span class="ml-2 d-none d-lg-block"> <span class="text-default">${sessionScope.user.c_id}</span> <small class="text-muted d-block mt-1">${sessionScope.user.c_name}</small>
-										</span>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="profile"> <i class="dropdown-icon fe fe-user"></i> 프로필
-											</a> <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-settings"></i> Settings
-											</a> <a class="dropdown-item" href="#"> <span class="float-right"><span class="badge badge-primary">6</span></span> <i class="dropdown-icon fe fe-mail"></i> Inbox
-											</a> <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-send"></i> Message
-											</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-											</a> <a class="dropdown-item" href="logout"> <i class="dropdown-icon fe fe-log-out"></i> 로그아웃
-											</a>
+									</a>
+									<a href="#" class="dropdown-item d-flex">
+										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
+										<div>
+											<strong>Alice</strong> started new task: Tabler UI design.
+											<div class="small text-muted">1 hour ago</div>
 										</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="nav-item d-none d-md-flex">
-										<a href="./login" class="btn btn-sm btn-outline-primary">로그인</a>
-									</div>
-								</c:otherwise>
-							</c:choose>
+									</a>
+									<a href="#" class="dropdown-item d-flex">
+										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
+										<div>
+											<strong>Rose</strong> deployed new version of NodeJS REST Api V3
+											<div class="small text-muted">2 hours ago</div>
+										</div>
+									</a>
+									<div class="dropdown-divider"></div>
+									<a href="#" class="dropdown-item text-center">Mark all as read</a>
+								</div>
+							</div>
+							<div class="dropdown">
+								<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+									<span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span> <span class="ml-2 d-none d-lg-block"> <span class="text-default">Jane Pearson</span> <small class="text-muted d-block mt-1">Administrator</small>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+									<a class="dropdown-item" href="#">
+										<i class="dropdown-icon fe fe-user"></i> 회원정보
+									</a>
+									<a class="dropdown-item" href="#">
+										<i class="dropdown-icon fe fe-gitlab"></i> 반려견정보
+									</a>
+									<a class="dropdown-item" href="#">
+										<i class="dropdown-icon fe fe-log-out"></i> 로그아웃
+									</a>
+								</div>
+							</div>
 						</div>
-						<a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
+						<a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+							<span class="header-toggler-icon"></span>
 						</a>
 					</div>
 				</div>
@@ -119,29 +123,42 @@
 						</div>
 						<div class="col-lg order-lg-first">
 							<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-home"></i> 보험</a>
+								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
+										<i class="fe fe-home"></i> 보험
+									</a>
 									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./index" class="dropdown-item ">보험료 산정</a> <a href="./charts.html" class="dropdown-item ">보험 연동</a> <a href="./test" class="dropdown-item ">test</a>
+										<a href="./index" class="dropdown-item ">보험료 산정</a>
+										<a href="./charts.html" class="dropdown-item ">보험 연동</a>
+										<a href="./test" class="dropdown-item ">test</a>
 									</div></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"> <i class="fe fe-box"></i> 동물병원
-								</a></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> FAQ</a></li>
+								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
+										<i class="fe fe-box"></i> 동물병원
+									</a></li>
+								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
+										<i class="fe fe-calendar"></i> FAQ
+									</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="my-3 my-md-5">
-				<c:choose>
-					<c:when test="${not empty sessionScope.user}">
-						<h2>로그인 성공</h2>
-       					이름 : ${sessionScope.user.c_id}
-      				 	이메일 : <c:out value="${sessionScope.user.c_pw}" />
-					</c:when>
-					<c:otherwise>
-						hello world
-				</c:otherwise>
-				</c:choose>
+
+			<div class="row justify-content-md-center">
+				<div class="col-lg-4">
+					<div class="card" style="text-align: center;">
+						<div class="card-header">
+							<h3>반려견 정보</h3>
+						</div>
+						<div class="card-body">
+							<img src="assets/images/browsers/dogex.jpg" class="card-img-top rounded-circle" style="width: 300px; height: 300px">
+						</div>
+						<div class="card-footer">
+							p_name<br> p_type<br> p_birth<br> p_gender<br> p_weight<br> p_status<br> <br>
+							<button type="button" class="btn btn-primary">반려견 수정</button>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 		<div class="footer">
@@ -193,7 +210,8 @@
 						</div>
 					</div>
 					<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-						Copyright © 2020 <a href="https://www.dbinc.co.kr/">DB Inc.</a>
+						Copyright © 2020
+						<a href="https://www.dbinc.co.kr/">DB Inc.</a>
 					</div>
 				</div>
 			</div>

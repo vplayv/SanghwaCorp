@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ page session="false"%> --%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -20,12 +22,13 @@
 <title>Login - tabler.github.io - a responsive, flat and full featured admin template</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+<script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
 <script src="./assets/js/require.min.js"></script>
 <script>
-      requirejs.config({
-          baseUrl: '.'
-      });
-    </script>
+	requirejs.config({
+		baseUrl : '.'
+	});
+</script>
 <!-- Dashboard Core -->
 <link href="./assets/css/dashboard.css" rel="stylesheet" />
 <script src="./assets/js/dashboard.js"></script>
@@ -49,32 +52,55 @@
 						<div class="text-center mb-6">
 							<img src="./demo/brand/tabler.svg" class="h-6" alt="">
 						</div>
-						<form class="card" action="" method="post">
+						<form:form id="loginform" name="loginform" class="card" action="LoginProcess" method="post" autocomplete="on">
 							<div class="card-body p-6">
-								<div class="card-title">Login to your account</div>
+								<div class="card-title text-center">로그인</div>
 								<div class="form-group">
-									<label class="form-label">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+									<label class="form-label">아이디</label> <input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디">
 								</div>
 								<div class="form-group">
-									<label class="form-label"> Password <a href="./forgot-password.html" class="float-right small">I forgot password</a>
-									</label> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-								</div>
-								<div class="form-group">
-									<label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" /> <span class="custom-control-label">Remember me</span>
-									</label>
+									<label class="form-label"> 비밀번호 </label> <input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="비밀번호">
 								</div>
 								<div class="form-footer">
-									<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+									<button type="button" id="login_btn" class="btn btn-primary btn-block">로그인</button>
 								</div>
 							</div>
-						</form>
+						</form:form>
 						<div class="text-center text-muted">
-							Don't have account yet? <a href="./register.html">Sign up</a>
+							혹시 처음이신가요? <a href="./register">회원가입</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+	var result = '${alertmsg}';
+	var success = "회원가입에 성공했습니다.";
+	var loginfail = "아이디 혹은 패스워드가 틀렸습니다.";
+	
+	if (result == success) {
+		alert(success);
+	} else if(result == loginfail){
+		alert(loginfail);
+	}
+	
+	$("#login_btn").click(function() {
+        var json = {
+                c_id : $("#c_id").val(),
+                c_pw : $("#c_pw").val()
+            };
+        
+            for(var str in json){
+                if(json[str].length == 0){
+                    alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
+                    $("#" + str).focus();
+                    return;
+                }
+            }
+            
+		$("#loginform").submit();
+	});
+	</script>
 </body>
 </html>

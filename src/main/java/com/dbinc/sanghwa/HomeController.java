@@ -1,11 +1,6 @@
 package com.dbinc.sanghwa;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class HomeController {
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		log.info("test");
+		log.info("추가하지 마세용ㅋ");
 		return "home";
 	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(Locale locale, Model model) {
-		log.info("index");
-		return "index";
-	}
-	
-	
 }
