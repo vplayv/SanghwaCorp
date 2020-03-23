@@ -77,4 +77,31 @@ public class PetCustomerImpl implements PetCustomerDAO {
 		return 0;
 	}
 
+	public int userUpdate(PetCustomerVO user, HttpSession httpsession) {
+		try {
+			int result = session.update(NameSpace + "userUpdate", user);
+			log.info(user.toString());
+			if (result != 1)
+				return 0;
+			httpsession.setAttribute("user", user);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	public int userDelete(PetCustomerVO user, HttpSession httpsession) {
+		try {
+			int result = session.delete(NameSpace + "userDelete", user);
+			System.out.println(result);
+			if (result != 1)
+				return 0;
+			httpsession.removeAttribute("user");
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }

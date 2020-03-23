@@ -171,17 +171,17 @@
 								<div class="col-lg-3 order-lg-1 mb-4">
 									<!-- Components -->
 									<div class="list-group list-group-transparent mb-0">
-										<a href="profile" class="list-group-item list-group-item-action active">
+										<a href="profile" class="list-group-item list-group-item-action">
 											<span class="icon mr-3"><i class="fe fe-user"></i></span>회원정보 수정
 										</a>
-										<a href="delete" class="list-group-item list-group-item-action">
+										<a href="delete" class="list-group-item list-group-item-action active">
 											<span class="icon mr-3"><i class="fe fe-user-x"></i></span>계정 탈퇴
 										</a>
 										<a href="profile" class="list-group-item list-group-item-action">
 											<span class="icon mr-3"><i class="fe fe-bar-chart-2"></i></span>통계 예시..
 										</a>
 										<a href="profile" class="list-group-item list-group-item-action">
-											<span class="icon mr-3"><i class="fa fa-paw""></i></span>강아지 예시..
+											<span class="icon mr-3"><i class="fa fa-paw"></i></span>강아지 예시..
 										</a>
 										<a href="profile" class="list-group-item list-group-item-action">
 											<span class="icon mr-3"><i class="fa fa-address-book"></i></span>추가가능...
@@ -192,92 +192,26 @@
 								<div class="col-9">
 									<div class="card">
 										<div class="card-header">
-											<h3 class="card-title">회원정보 수정</h3>
+											<h3 class="card-title">계정 탈퇴</h3>
 										</div>
 										<div class="card-body">
-											<form:form id="updateform" name="updateform" class="card" modelAttribute="true" action="updateProcess" method="post" autocomplete="off">
-												<div class="card-body">
-													<div class="card-title center">회원 정보</div>
-													<div class="row">
-														<div class="col-auto">
-															<span class="avatar avatar-xl" style="background-image: url(demo/faces/female/9.jpg)"></span>
-														</div>
-														<div class="col">
-															<div class="form-group">
-																<label class="form-label">아이디</label>
-																<input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디" value='<c:out value="${sessionScope.user.c_id}"></c:out>' readonly="readonly">
-															</div>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="form-label">가입날짜</label>
-														<input type="text" name="c_joindate" id="c_joindate" class="form-control" placeholder="가입날짜" value='<c:out value="${sessionScope.user.c_joindate}"></c:out>' readonly="readonly">
-													</div>
-													<div class="form-group">
-														<label class="form-label">패스워드 </label>
-														<input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="패스워드" value='<c:out value="${sessionScope.user.c_pw}"></c:out>'>
-													</div>
-													<div class="form-group">
-														<label class="form-label">패스워드 확인 </label>
-														<input type="password" name="c_pw_check" id="c_pw_check" class="form-control" placeholder="패스워드 확인" value='<c:out value="${sessionScope.user.c_pw}"></c:out>'>
-														<div class="alert alert-success" id="alert-success" style="display: none;">비밀번호가 일치합니다.</div>
-														<div class="alert alert-danger" id="alert-danger" style="display: none;">비밀번호가 일치하지 않습니다.</div>
-													</div>
-													<div class="form-group">
-														<label class="form-label">이름</label>
-														<input type="text" name="c_name" id="c_name" class="form-control" placeholder="이름" value='<c:out value="${sessionScope.user.c_name}"></c:out>'>
-													</div>
-
-													<div class="form-group">
-														<label class="form-label">주민등록번호</label>
-														<input type="text" name="c_pid" id="c_pid" class="form-control" value='<c:out value="${sessionScope.user.c_pid}"></c:out>' data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
-													</div>
-													<div class="form-group">
-														<div class="form-label">성별</div>
-														<div id="c_gender" class="custom-controls-stacked">
-															<label class="custom-control custom-radio custom-control-inline">
-																<input type="radio" name="c_gender" id="c_gender1" class="custom-control-input" value="male"> <span class="custom-control-label">남자</span>
-															</label>
-															<label class="custom-control custom-radio custom-control-inline">
-																<input type="radio" name="c_gender" id="c_gender2" class="custom-control-input" value="female"> <span class="custom-control-label">여자</span>
-															</label>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="form-label">연락처</label>
-														<input name="c_phone" id="c_phone" type="text" class="form-control" value='<c:out value="${sessionScope.user.c_phone}"></c:out>' data-mask="000-0000-0000" data-mask-clearifnotmatch="true" placeholder="000-0000-0000" autocomplete="off" maxlength="13">
-													</div>
-													<div class="form-group">
-														<label class="form-label">주소</label>
-														<div class="form-group">
-															<input name="c_zipcode" id="c_zipcode" class="form-control" value='<c:out value="${sessionScope.user.c_zipcode}"></c:out>' style="width: 40%; display: inline;" placeholder="우편번호" type="text" readonly="readonly">
-															<button type="button" class="btn btn-default" onclick="execPostCode();">
-																<i class="fa fa-search"></i> 우편번호 찾기
-															</button>
-														</div>
-														<div class="form-group">
-															<input class="form-control" value='<c:out value="${sessionScope.user.c_road}"></c:out>' style="top: 5px;" placeholder="도로명 주소" name="c_road" id="c_road" type="text" readonly="readonly" />
-														</div>
-														<div class="form-group">
-															<input class="form-control" value='<c:out value="${sessionScope.user.c_detail}"></c:out>' placeholder="상세주소" name="c_detail" id="c_detail" type="text" />
-														</div>
-
-													</div>
-													<div class="form-group">
-														<label class="form-label">이메일</label>
-														<input name="c_email" id="c_email" value='<c:out value="${sessionScope.user.c_email}"></c:out>' class="form-control" placeholder="email@domain.com">
-													</div>
-													<div class="form-group">
-														<label class="form-label">체크사항</label>
-														<label class="custom-switch">
-															<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"> <span class="custom-switch-indicator"></span> <span class="custom-switch-description">DB손해보험 가입여부</span>
-														</label>
-													</div>
-													<div class="form-footer">
-														<button type="button" id="update_btn" class="btn btn-primary btn-block">회원 정보 변경</button>
-													</div>
-												</div>
-											</form:form>
+											<h2 class="mt-0 mb-4">제7조(회원 탈퇴 및 자격 상실 등)</h2>
+											<h5 id="setup-environment">① 회원은 "ㅇㅇㅇ"에 언제든지 탈퇴를 요청할 수 있으며 "ㅇㅇㅇ"은 즉시 회원탈퇴를 처리합니다.</h5>
+											<br>
+											<h5 id="setup-environment">② 회원이 다음 각 호의 사유에 해당하는 경우, "ㅇㅇㅇ"은 회원자격을 제한 및 정지시킬 수 있습니다.</h5>
+											<ol>
+												<li>가입 신청 시에 허위 내용을 등록한 경우</li>
+												<li>"ㅇㅇㅇ"을 이용하여 구입한 재화·용역 등의 대금, 기타 "ㅇㅇㅇ" 이용에 관련하여 회원이 부담하는 채무를 기일에 지급하지 않는 경우</li>
+												<li>다른 사람의 "ㅇㅇㅇ" 이용을 방해하거나 그 정보를 도용하는 등 전자거래질서를 위협하는 경우</li>
+												<li>"ㅇㅇㅇ"을 이용하여 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하는 경우</li>
+											</ol>
+											<br>
+											<h5 id="setup-environment">③ "ㅇㅇㅇ"이 회원 자격을 제한·정지 시킨 후, 동일한 행위가 2회 이상 반복되거나 30일 이내에 그 사유가 시정되지 아니하는 경우 "ㅇㅇㅇ"은 회원자격을 상실시킬 수 있습니다.</h5>
+											<br>
+											<h5 id="setup-environment">④ "ㅇㅇㅇ"이 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 이를 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다.</h5>
+											<br>
+											<img class="card-img-top" src="./demo/photos/sad_cat.png" alt="ㅠㅠ"><br><br>
+											<button type="button" id="delete_btn" class="btn btn-square btn-danger btn-block">계정 탈퇴</button>
 										</div>
 									</div>
 								</div>
@@ -346,48 +280,31 @@
 			</div>
 		</footer>
 		<script type="text/javascript">
-			$(function() {
-				var c_gender = '${sessionScope.user.c_gender}'
-				console.log(c_gender);
-				$('input:radio[name=c_gender]:input[value=' + c_gender + ']')
-						.attr("checked", true);
-			})
-
-			$(function() {
-				var result = '${alertmsg}';
-				var updateok = "회원정보 수정에 성공했습니다.";
-				var updatefail = "업데이트 fail";
-				if (result == updateok) {
-					alert(updateok);
-				} else if (result == updatefail) {
-					alert(updatefail);
+			$('#delete_btn').click(function(event) {
+				var result = confirm('정말로 탈퇴하실건가용용?');
+				if (result) {
+					var user = {
+							c_id : "${sessionScope.user.c_id}",
+							c_pw : "${sessionScope.user.c_pw}",
+							c_name : "${sessionScope.user.c_name}",
+							c_pid : "${sessionScope.user.c_pid}",
+							c_gender : "${sessionScope.user.c_gender}",
+							c_zipcode : "${sessionScope.user.c_zipcode}",
+							c_road : "${sessionScope.user.c_road}",
+							c_detail : "${sessionScope.user.c_detail}",
+							c_phone : "${sessionScope.user.c_phone}",
+							c_email : "${sessionScope.user.c_email}",
+							c_joindate : "${sessionScope.user.c_joindate}"
+							};
+					console.log(user)
+					console.log("탈퇴");
+					$.post("/sanghwa/deleteProcess", user, function(data){
+						console.log(data);
+						console.log("삭제성공");
+					});
+				} else {
+					console.log("취소");
 				}
-
-			})
-
-			$(function() {
-				$("#alert-success").hide();
-				$("#alert-danger").hide();
-				$("input").keyup(function() {
-					console.log("keyup");
-					var pwd1 = $("#c_pw").val();
-					var pwd2 = $("#c_pw_check").val();
-					if (pwd1 != "" || pwd2 != "") {
-						if (pwd1 == pwd2) {
-							$("#alert-success").show();
-							$("#alert-danger").hide();
-							$("#submit").removeAttr("disabled");
-						} else {
-							$("#alert-success").hide();
-							$("#alert-danger").show();
-							$("#submit").attr("disabled", "disabled");
-						}
-					}
-				});
-			});
-
-			$("#update_btn").click(function() {
-				$("#updateform").submit();
 			});
 		</script>
 </body>

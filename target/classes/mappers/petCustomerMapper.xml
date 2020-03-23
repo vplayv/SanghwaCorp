@@ -38,7 +38,8 @@
 		]]>
 	</select>
 
-	<select id="userInfo" resultType="com.dbinc.sanghwa.petcustomer.PetCustomerVO"
+	<select id="userInfo"
+		resultType="com.dbinc.sanghwa.petcustomer.PetCustomerVO"
 		parameterType="com.dbinc.sanghwa.petcustomer.PetCustomerVO">
 		<![CDATA[
 		select *
@@ -47,4 +48,28 @@
 		]]>
 	</select>
 
+	<update id="userUpdate"
+		parameterType="com.dbinc.sanghwa.petcustomer.PetCustomerVO">
+		<![CDATA[
+		update pet_customer
+		set c_pw = #{c_pw}, 
+		c_name = #{c_name}, 
+		c_pid = #{c_pid}, 
+		c_gender = #{c_gender}, 
+		c_zipcode = #{c_zipcode}, 
+		c_road = #{c_road}, 
+		c_detail = #{c_detail}, 
+		c_phone = #{c_phone}, 
+		c_email = #{c_email}
+		where c_id = #{c_id}
+		]]>
+	</update>
+	
+	<delete id="userDelete"
+	parameterType="com.dbinc.sanghwa.petcustomer.PetCustomerVO">
+	<![CDATA[
+		delete from pet_customer
+		where c_id = #{c_id}
+	]]>
+	</delete>
 </mapper>

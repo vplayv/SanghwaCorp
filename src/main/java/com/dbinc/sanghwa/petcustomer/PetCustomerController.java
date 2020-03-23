@@ -75,4 +75,34 @@ public class PetCustomerController {
 	public String profile() {
 		return "profile";
 	}
+
+	@RequestMapping(value = "/updateProcess", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String updateProcess(PetCustomerVO user, Model model, RedirectAttributes rttr, HttpSession session) {
+		int check = userImpl.userUpdate(user, session);
+		if (check == 1) {
+			rttr.addFlashAttribute("alertmsg", "회원정보 수정에 성공했습니다.");
+		} else {
+			rttr.addFlashAttribute("alertmsg", "업데이트 fail");
+		}
+		return "redirect:/profile";
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete() {
+		return "delete";
+	}
+
+	@RequestMapping(value = "/deleteProcess", method = RequestMethod.POST)
+	public String deleteProcess(@ModelAttribute PetCustomerVO user, RedirectAttributes rttr, HttpSession session) {
+		log.info("delete process console");
+		log.info(user.toString());
+		int check = userImpl.userDelete(user, session);
+		if (check == 1) {
+			rttr.addFlashAttribute("alertmsg", "지금까지 이용해주셔서 감사합니다.");
+		} else {
+			rttr.addFlashAttribute("alertmsg", "삭제 실패");
+		}
+		session.invalidate();
+		return "redirect:/index";
+	}
 }

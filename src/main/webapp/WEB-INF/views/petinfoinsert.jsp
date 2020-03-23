@@ -39,6 +39,7 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
+
 </head>
 <body class="">
 	<div class="page">
