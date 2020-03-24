@@ -147,46 +147,113 @@
 			</div>
 			<div class="my-3 my-md-5">
 				<div class="container">
-					<div class="text-center mb-6">
-						<img src="demo/photos/petlogo.png" style="width: 300px;">
-					</div>
-					<div class="row">
-						<form id="calcform" action="inscalmoney" method="POST">
-							<div class="card card-aside" style="width: 800px; margin-left: 180px;">
-								<img src="demo/photos/calcimg2.jpg" class="card-aside-column" style="margin-left: 70px;">
-								<div class="card-body d-flex flex-column" style="margin-left: 80px;">
-									<div class="card-title">반려견 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="p_name" id="p_name" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label">견종</label>
-										<select name="petinput" id="petinput" class="form-control custom-select" style="width: 250px;">
-											<option value="말티즈">말티즈</option>
-											<option value="푸들">푸들</option>
-											<option value="시츄">시츄</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label class="form-label">생일</label>
-										<input type="date" class="form-control custom-select" name="birthinput" id="birthinput" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label" style="color: gray;">회원이라면</label>
-										<select name="callpet" id="callpet" class="form-control custom-select" style="width: 250px;">
-											<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-											<option value="감자">감자</option>
-											<option value="쵸비">쵸비</option>
-										</select>
-									</div>
-
-									<div class="form-footer">
-										<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();" style="width: 250px;">보험료 확인</button>
+					<div class="row" style="margin-right: 200px;">
+						<div class="col col-login mx-auto">
+							<div class="row row-cards">
+								<div class="col-md-6">
+									<div class="card" style="width: 600px;">
+										<div class="card-status bg-green"></div>
+										<div class="card-header">
+											<h3 class="card-title">계약 전 알릴 의무 사항</h3>
+										</div>
+										<div class="card-body">
+											<div class="form-group">
+												<span>1. 애완/반려 이외의 목적으로 양육하고 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="onechk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="onechk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>2. 반려동물이 현재 질병 및 사고로 치료 또는 경과 관찰 중이거나 과거 3개월 이내에 동물병원에서 예방목적 이외의 진찰을 받은 적이 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="twochk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="twochk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>3. 반려동물이 과거부터 현재까지 슬·고관절탈구, 슬·고관절형성부전 또는 기타 이들과 유사한 질병 또는 상해로 진단되거나 의심소견을 받은적이 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="threechk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="threechk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>4. 반려동물이 과거부터 현재까지 치석제거 및 치아부정교합 등 구강내 질환으로 진단되거나 의심소견을 받은적이 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="fourchk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="fourchk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>5. 반려동물이 과거부터 현재까지 피부병(외이염, 중이염, 피부알러지, 피부트러블을 포함)으로 진단되거나 의심소견을 받은적이 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="fivechk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="fivechk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>6. 반려동물이 현재 계속해서 복용(사용)하고 있는 의약품이 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="sixchk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="sixchk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>7. 반려동물이 현재 일상적인 관리나 예방 접종을 받고 있는 동물병원이 있습니까? </span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="sevenchk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="sevenchk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<span>8. 현재 다른 애견보험 등에 가입하고 있습니까?</span>
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="eightchk" value="option1"> <span class="custom-control-label">YES</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="eightchk" value="option2"> <span class="custom-control-label">NO</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-footer">
+												<a href="./calccus" type="button" class="btn btn-success" id="prev" style="width: 80px; margin-right: 385px;">이전</a>
+												<a href="./insfinalchk" type="button" class="btn btn-success" id="next" style="width: 80px;" onclick="chkfn();">다음</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -245,41 +312,22 @@
 		</footer>
 	</div>
 	<script>
-		$(function() {
-			$("#callpet").append("<option value=\"고구마\">고구마</option>")
-			$("#callpet").change(function() {
-				s = $("#callpet > option:selected").val();
-				$.get("selectpetinfo", {
-					'p_name' : s
-				}, function(data) {
-					console.log(data)
-					var obj = eval("(" + data + ")");
-					$("#petinput").val(obj[0].p_type).prop("selected", true)
-					$("#birthinput").val(obj[0].p_birth)
-				})
-			});
-
-		})
-
-		function setfn() {
-			petname = $("#p_name").val()
-			pettype = $("#petinput > option:selected").val();
-			petbirth = $("#birthinput").val()
-
-			yearbirth = parseInt(petbirth.substr(0, 4));
-			todayyear = new Date().getFullYear();
-
-			agecalc = todayyear - yearbirth + 1;
-
-			sessionStorage.setItem('petname', petname);
-			sessionStorage.setItem('pettype', pettype);
-			sessionStorage.setItem('petbirth', agecalc);
-
-			if (!pettype || !petbirth || !petname) {
-				alert("반려견 정보를 입력하세요.")
-				$('#calcform').attr({
-					'action' : 'index'
-				}).submit();
+		function chkfn() {
+			var radioVal1 = $('input[name="onechk"]:checked').val();
+			var radioVal2 = $('input[name="twochk"]:checked').val();
+			var radioVal3 = $('input[name="threechk"]:checked').val();
+			var radioVal4 = $('input[name="fourchk"]:checked').val();
+			var radioVal5 = $('input[name="fivechk"]:checked').val();
+			var radioVal6 = $('input[name="sixchk"]:checked').val();
+			var radioVal7 = $('input[name="sevenchk"]:checked').val();
+			var radioVal8 = $('input[name="eightchk"]:checked').val();
+			if (radioVal1 == "option2" && radioVal2 == "option2"
+					&& radioVal3 == "option2" && radioVal4 == "option2"
+					&& radioVal5 == "option2" && radioVal6 == "option2"
+					&& radioVal7 == "option1" && radioVal8 == "option2") {
+				location.replace("./inspetreg")
+			} else {
+				alert('해당 조건으로는 가입하실 수 없습니다.')
 			}
 
 		}

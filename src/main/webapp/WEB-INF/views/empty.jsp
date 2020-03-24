@@ -146,49 +146,16 @@
 				</div>
 			</div>
 			<div class="my-3 my-md-5">
-				<div class="container">
-					<div class="text-center mb-6">
-						<img src="demo/photos/petlogo.png" style="width: 300px;">
-					</div>
-					<div class="row">
-						<form id="calcform" action="inscalmoney" method="POST">
-							<div class="card card-aside" style="width: 800px; margin-left: 180px;">
-								<img src="demo/photos/calcimg2.jpg" class="card-aside-column" style="margin-left: 70px;">
-								<div class="card-body d-flex flex-column" style="margin-left: 80px;">
-									<div class="card-title">반려견 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="p_name" id="p_name" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label">견종</label>
-										<select name="petinput" id="petinput" class="form-control custom-select" style="width: 250px;">
-											<option value="말티즈">말티즈</option>
-											<option value="푸들">푸들</option>
-											<option value="시츄">시츄</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label class="form-label">생일</label>
-										<input type="date" class="form-control custom-select" name="birthinput" id="birthinput" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label" style="color: gray;">회원이라면</label>
-										<select name="callpet" id="callpet" class="form-control custom-select" style="width: 250px;">
-											<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-											<option value="감자">감자</option>
-											<option value="쵸비">쵸비</option>
-										</select>
-									</div>
-
-									<div class="form-footer">
-										<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();" style="width: 250px;">보험료 확인</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
+				<c:choose>
+					<c:when test="${not empty sessionScope.user}">
+						<h2>로그인 성공</h2>
+       					이름 : ${sessionScope.user.c_id}
+      				 	이메일 : <c:out value="${sessionScope.user.c_email}" />
+					</c:when>
+					<c:otherwise>
+						hello world
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="footer">
@@ -244,45 +211,5 @@
 			</div>
 		</footer>
 	</div>
-	<script>
-		$(function() {
-			$("#callpet").append("<option value=\"고구마\">고구마</option>")
-			$("#callpet").change(function() {
-				s = $("#callpet > option:selected").val();
-				$.get("selectpetinfo", {
-					'p_name' : s
-				}, function(data) {
-					console.log(data)
-					var obj = eval("(" + data + ")");
-					$("#petinput").val(obj[0].p_type).prop("selected", true)
-					$("#birthinput").val(obj[0].p_birth)
-				})
-			});
-
-		})
-
-		function setfn() {
-			petname = $("#p_name").val()
-			pettype = $("#petinput > option:selected").val();
-			petbirth = $("#birthinput").val()
-
-			yearbirth = parseInt(petbirth.substr(0, 4));
-			todayyear = new Date().getFullYear();
-
-			agecalc = todayyear - yearbirth + 1;
-
-			sessionStorage.setItem('petname', petname);
-			sessionStorage.setItem('pettype', pettype);
-			sessionStorage.setItem('petbirth', agecalc);
-
-			if (!pettype || !petbirth || !petname) {
-				alert("반려견 정보를 입력하세요.")
-				$('#calcform').attr({
-					'action' : 'index'
-				}).submit();
-			}
-
-		}
-	</script>
 </body>
 </html>

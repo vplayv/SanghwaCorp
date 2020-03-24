@@ -117,7 +117,7 @@
 								</c:when>
 								<c:otherwise>
 									<div class="nav-item d-none d-md-flex">
-										<a href="./login" class="btn btn-sm btn-outline-primary">로그인</a>
+										<a href="./login" class="btn btn-sm btn-outline-success">로그인</a>
 									</div>
 								</c:otherwise>
 							</c:choose>
@@ -301,6 +301,7 @@
 					$.post("/sanghwa/deleteProcess", user, function(data){
 						console.log(data);
 						console.log("삭제성공");
+						location = "index";
 					});
 				} else {
 					console.log("취소");

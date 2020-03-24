@@ -299,29 +299,18 @@
 			</div>
 		</div>
 	</div>
-	<footer class="footer">
+	<footer class="footer center-block">
 		<div class="container">
-			<div class="row align-items-center flex-row-reverse">
-				<div class="col-auto ml-lg-auto">
-					<div class="row align-items-center">
-						<div class="col-auto">
-							<ul class="list-inline list-inline-dots mb-0">
-								<li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-								<li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
-							</ul>
-						</div>
-						<div class="col-auto">
-							<a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Source code</a>
-						</div>
-					</div>
-				</div>
-
+			<div class="row flex-row-reverse">
 				<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-					Copyright © 2019
-					<a href=".">Tabler</a>
-					. Theme by
-					<a href="https://codecalm.net" target="_blank">codecalm.net</a>
-					All rights reserved.
+					<ul class="list-inline list-inline-dots mb-0">
+						<li class="list-inline-item"><a href="https://www.dbinc.co.kr/">
+								<strong>(주)디비아이엔씨</strong>
+							</a></li>
+						<li class="list-inline-item">서울시 강남구 삼성로 96길 23(삼성동 154-17)</li>
+						<li class="list-inline-item">TEL : 02-2136-6000</li>
+						<li class="list-inline-item">사업자 등록 번호 : 211-81-19938 (C) 2015</li>
+					</ul>
 				</div>
 			</div>
 		</div>

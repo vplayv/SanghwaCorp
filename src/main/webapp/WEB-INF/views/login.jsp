@@ -50,24 +50,30 @@
 				<div class="row">
 					<div class="col col-login mx-auto">
 						<div class="text-center mb-6">
-							<img src="./demo/brand/tabler.svg" class="h-6" alt="">
+							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
 						</div>
 						<form:form id="loginform" name="loginform" class="card" action="LoginProcess" method="post" autocomplete="on">
+							<div class="card-header">
+								<div class="card-status bg-green"></div>
+								<h3 class="card-title">로그인</h3>
+							</div>
 							<div class="card-body p-6">
-								<div class="card-title text-center">로그인</div>
 								<div class="form-group">
-									<label class="form-label">아이디</label> <input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디">
+									<label class="form-label">아이디</label>
+									<input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디">
 								</div>
 								<div class="form-group">
-									<label class="form-label"> 비밀번호 </label> <input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="비밀번호">
+									<label class="form-label"> 비밀번호 </label>
+									<input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="비밀번호">
 								</div>
 								<div class="form-footer">
-									<button type="button" id="login_btn" class="btn btn-primary btn-block">로그인</button>
+									<button type="button" id="login_btn" class="btn btn-success btn-block">로그인</button>
 								</div>
 							</div>
 						</form:form>
 						<div class="text-center text-muted">
-							혹시 처음이신가요? <a href="./register">회원가입</a>
+							혹시 처음이신가요?
+							<a href="./register">회원가입</a>
 						</div>
 					</div>
 				</div>
@@ -75,32 +81,32 @@
 		</div>
 	</div>
 	<script>
-	var result = '${alertmsg}';
-	var success = "회원가입에 성공했습니다.";
-	var loginfail = "아이디 혹은 패스워드가 틀렸습니다.";
-	
-	if (result == success) {
-		alert(success);
-	} else if(result == loginfail){
-		alert(loginfail);
-	}
-	
-	$("#login_btn").click(function() {
-        var json = {
-                c_id : $("#c_id").val(),
-                c_pw : $("#c_pw").val()
-            };
-        
-            for(var str in json){
-                if(json[str].length == 0){
-                    alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
-                    $("#" + str).focus();
-                    return;
-                }
-            }
-            
-		$("#loginform").submit();
-	});
+		var result = '${alertmsg}';
+		var success = "회원가입에 성공했습니다.";
+		var loginfail = "아이디 혹은 패스워드가 틀렸습니다.";
+
+		if (result == success) {
+			alert(success);
+		} else if (result == loginfail) {
+			alert(loginfail);
+		}
+
+		$("#login_btn").click(function() {
+			var json = {
+				c_id : $("#c_id").val(),
+				c_pw : $("#c_pw").val()
+			};
+
+			for ( var str in json) {
+				if (json[str].length == 0) {
+					alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
+					$("#" + str).focus();
+					return;
+				}
+			}
+
+			$("#loginform").submit();
+		});
 	</script>
 </body>
 </html>

@@ -31,6 +31,12 @@ public class PetCustomerController {
 		log.info("index");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/empty", method = RequestMethod.GET)
+	public String empty(Locale locale, Model model) {
+		log.info("empty");
+		return "empty";
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {

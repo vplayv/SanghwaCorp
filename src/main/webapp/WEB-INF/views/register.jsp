@@ -54,43 +54,55 @@
 				<div class="row">
 					<div class="col col-login mx-auto">
 						<div class="text-center mb-6">
-							<img src="./demo/brand/tabler.svg" class="h-6" alt="">
+							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
 						</div>
 					</div>
 				</div>
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8">
 						<form:form id="registerform" name="registerform" class="card" modelAttribute="true" action="registerProcess" method="post" autocomplete="off">
+							<div class="card-header">
+								<div class="card-status bg-green"></div>
+								<h3 class="card-title">계정 생성</h3>
+							</div>
 							<div class="card-body">
-								<div class="card-title center">계정 생성</div>
 								<div class="form-group">
-									<label class="form-label">아이디</label> <input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디">
+									<label class="form-label">아이디</label>
+									<input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디">
 								</div>
 								<div class="form-group">
-									<label class="form-label">패스워드 </label> <input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="패스워드">
+									<label class="form-label">패스워드 </label>
+									<input type="password" name="c_pw" id="c_pw" class="form-control" placeholder="패스워드">
 								</div>
 								<div class="form-group">
-									<label class="form-label">패스워드 확인 </label> <input type="password" name="c_pw_check" id="c_pw_check" class="form-control" placeholder="패스워드 확인">
+									<label class="form-label">패스워드 확인 </label>
+									<input type="password" name="c_pw_check" id="c_pw_check" class="form-control" placeholder="패스워드 확인">
 									<div class="alert alert-success" id="alert-success" style="display: none;">비밀번호가 일치합니다.</div>
 									<div class="alert alert-danger" id="alert-danger" style="display: none;">비밀번호가 일치하지 않습니다.</div>
 								</div>
 								<div class="form-group">
-									<label class="form-label">이름</label> <input type="text" name="c_name" id="c_name" class="form-control" placeholder="이름">
+									<label class="form-label">이름</label>
+									<input type="text" name="c_name" id="c_name" class="form-control" placeholder="이름">
 								</div>
 
 								<div class="form-group">
-									<label class="form-label">주민등록번호</label> <input type="text" name="c_pid" id="c_pid" name="field-name" class="form-control" data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
+									<label class="form-label">주민등록번호</label>
+									<input type="text" name="c_pid" id="c_pid" name="field-name" class="form-control" data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
 								</div>
 								<div class="form-group">
 									<div class="form-label">성별</div>
 									<div id="c_gender" class="custom-controls-stacked">
-										<label class="custom-control custom-radio custom-control-inline"> <input type="radio" name="c_gender" id="c_gender1" class="custom-control-input" value="male" checked> <span class="custom-control-label">남자</span>
-										</label> <label class="custom-control custom-radio custom-control-inline"> <input type="radio" name="c_gender" id="c_gender2" class="custom-control-input" value="female"> <span class="custom-control-label">여자</span>
+										<label class="custom-control custom-radio custom-control-inline">
+											<input type="radio" name="c_gender" id="c_gender1" class="custom-control-input bg-green" value="male" checked> <span class="custom-control-label">남자</span>
+										</label>
+										<label class="custom-control custom-radio custom-control-inline">
+											<input type="radio" name="c_gender" id="c_gender2" class="custom-control-input bg-green" value="female"> <span class="custom-control-label">여자</span>
 										</label>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="form-label">연락처</label> <input name="c_phone" id="c_phone" type="text" class="form-control" data-mask="000-0000-0000" data-mask-clearifnotmatch="true" placeholder="000-0000-0000" autocomplete="off" maxlength="13">
+									<label class="form-label">연락처</label>
+									<input name="c_phone" id="c_phone" type="text" class="form-control" data-mask="000-0000-0000" data-mask-clearifnotmatch="true" placeholder="000-0000-0000" autocomplete="off" maxlength="13">
 								</div>
 								<div class="form-group">
 									<label class="form-label">주소</label>
@@ -109,14 +121,17 @@
 
 								</div>
 								<div class="form-group">
-									<label class="form-label">이메일</label> <input name="c_email" id="c_email" class="form-control" placeholder="email@domain.com">
+									<label class="form-label">이메일</label>
+									<input name="c_email" id="c_email" class="form-control" placeholder="email@domain.com">
 								</div>
 								<div class="form-group">
-									<label class="form-label">체크사항</label> <label class="custom-switch"> <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"> <span class="custom-switch-indicator"></span> <span class="custom-switch-description">DB손해보험 가입여부</span>
+									<label class="form-label">체크사항</label>
+									<label class="custom-switch">
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"> <span class="custom-switch-indicator"></span> <span class="custom-switch-description">DB손해보험 가입여부</span>
 									</label>
 								</div>
 								<div class="form-footer">
-									<button type="button" id="register_btn" class="btn btn-primary btn-block">회원 가입</button>
+									<button type="button" id="register_btn" class="btn btn-success btn-block">회원 가입</button>
 								</div>
 							</div>
 						</form:form>
@@ -125,7 +140,8 @@
 				<div class="row">
 					<div class="col col-login mx-auto">
 						<div class="text-center text-muted">
-							이미 계정이 있습니까? <a href="./login">로그인</a>
+							이미 계정이 있습니까?
+							<a href="./login">로그인</a>
 						</div>
 					</div>
 				</div>

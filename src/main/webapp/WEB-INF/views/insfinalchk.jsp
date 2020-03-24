@@ -147,46 +147,72 @@
 			</div>
 			<div class="my-3 my-md-5">
 				<div class="container">
-					<div class="text-center mb-6">
-						<img src="demo/photos/petlogo.png" style="width: 300px;">
-					</div>
-					<div class="row">
-						<form id="calcform" action="inscalmoney" method="POST">
-							<div class="card card-aside" style="width: 800px; margin-left: 180px;">
-								<img src="demo/photos/calcimg2.jpg" class="card-aside-column" style="margin-left: 70px;">
-								<div class="card-body d-flex flex-column" style="margin-left: 80px;">
-									<div class="card-title">반려견 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="p_name" id="p_name" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label">견종</label>
-										<select name="petinput" id="petinput" class="form-control custom-select" style="width: 250px;">
-											<option value="말티즈">말티즈</option>
-											<option value="푸들">푸들</option>
-											<option value="시츄">시츄</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label class="form-label">생일</label>
-										<input type="date" class="form-control custom-select" name="birthinput" id="birthinput" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label" style="color: gray;">회원이라면</label>
-										<select name="callpet" id="callpet" class="form-control custom-select" style="width: 250px;">
-											<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-											<option value="감자">감자</option>
-											<option value="쵸비">쵸비</option>
-										</select>
-									</div>
-
-									<div class="form-footer">
-										<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();" style="width: 250px;">보험료 확인</button>
+					<div class="row" style="margin-right: 200px;">
+						<div class="col col-login mx-auto">
+							<div class="row row-cards">
+								<div class="col-md-6">
+									<div class="card" style="width: 600px;">
+										<div class="card-status bg-green"></div>
+										<div class="card-header">
+											<h3 class="card-title">가입 정보 확인</h3>
+										</div>
+										<div class="card-body">
+											<div class="text-muted">반려견 정보</div>
+											<div style="margin-left: 10px; margin-top: 10px;">
+												<div>
+													이름<span id="p_name" style="margin-left: 20px;"></span>
+												</div>
+												<div>
+													견종<span id="p_type" style="margin-left: 20px;"></span>
+												</div>
+												<div>
+													생일<span id="p_birth" style="margin-left: 20px;"></span>
+												</div>
+											</div>
+											<hr>
+											<div class="text-muted">고객 정보</div>
+											<div style="margin-left: 10px; margin-top: 10px;">
+												<div>
+													이름<span id="c_name" style="margin-left: 20px;"></span>
+												</div>
+												<div>
+													생일<span id="c_pid" style="margin-left: 20px;"></span>
+												</div>
+												<div>
+													주소<span id="c_add" style="margin-left: 20px;"></span>
+												</div>
+											</div>
+											<hr>
+											<div class="text-muted">보험 정보</div>
+											<div style="margin-left: 10px; margin-top: 10px;">
+												<div>
+													상품명<span id="i_name" style="margin-left: 52px;">아이(I)러브(LOVE)펫보험</span>
+												</div>
+												<div>
+													자기 부담금<span id="i_burden" style="margin-left: 20px;"></span>만원
+												</div>
+												<div>
+													보상 비율<span id="i_per" style="margin-left: 34px;"></span>%
+												</div>
+												<div>
+													납입 방법<span id="i_paytype" style="margin-left: 34px;"></span>
+												</div>
+												<div>
+													보험료<span id="i_total" style="margin-left: 53px;"></span>원
+												</div>
+												<div>
+													특별 약관<span id="i_special" style="margin-left: 34px;"></span>
+												</div>
+											</div>
+											<div class="form-footer">
+												<a href="./insobligation" type="button" class="btn btn-success" id="prev" style="width: 80px; margin-right: 385px;">이전</a>
+												<a href="./inscomplete" type="button" class="btn btn-success" id="next" style="width: 80px;">가입</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -246,43 +272,30 @@
 	</div>
 	<script>
 		$(function() {
-			$("#callpet").append("<option value=\"고구마\">고구마</option>")
-			$("#callpet").change(function() {
-				s = $("#callpet > option:selected").val();
-				$.get("selectpetinfo", {
-					'p_name' : s
-				}, function(data) {
-					console.log(data)
-					var obj = eval("(" + data + ")");
-					$("#petinput").val(obj[0].p_type).prop("selected", true)
-					$("#birthinput").val(obj[0].p_birth)
-				})
-			});
+			$("#p_name").text(sessionStorage.getItem("petname"));
+			$("#p_type").text(sessionStorage.getItem("pettype"));
+			$("#p_birth").text(sessionStorage.getItem("petbirth") + "세");
 
+			$("#c_name").text(sessionStorage.getItem("c_name"));
+			c_pid = sessionStorage.getItem("c_pid").substr(0, 2) + "년 "
+					+ sessionStorage.getItem("c_pid").substr(2, 2) + "월 "
+					+ sessionStorage.getItem("c_pid").substr(4, 2) + "일";
+			$("#c_pid").text(c_pid);
+			$("#c_add").text(
+					"(" + sessionStorage.getItem("c_zipcode") + ") "
+							+ sessionStorage.getItem("c_road") + " "
+							+ sessionStorage.getItem("c_detail"));
+			$("#i_burden").text(sessionStorage.getItem("burden"));
+			$("#i_per").text(sessionStorage.getItem("perval"));
+			$("#i_paytype").text(sessionStorage.getItem("typeval"));
+			$("#i_total").text(sessionStorage.getItem("totaldiscount"));
+			$("#i_special").text(
+					sessionStorage.getItem("gugang") + " "
+							+ sessionStorage.getItem("talgu") + " "
+							+ sessionStorage.getItem("skin") + " "
+							+ sessionStorage.getItem("funeral") + " "
+							+ sessionStorage.getItem("baesang"));
 		})
-
-		function setfn() {
-			petname = $("#p_name").val()
-			pettype = $("#petinput > option:selected").val();
-			petbirth = $("#birthinput").val()
-
-			yearbirth = parseInt(petbirth.substr(0, 4));
-			todayyear = new Date().getFullYear();
-
-			agecalc = todayyear - yearbirth + 1;
-
-			sessionStorage.setItem('petname', petname);
-			sessionStorage.setItem('pettype', pettype);
-			sessionStorage.setItem('petbirth', agecalc);
-
-			if (!pettype || !petbirth || !petname) {
-				alert("반려견 정보를 입력하세요.")
-				$('#calcform').attr({
-					'action' : 'index'
-				}).submit();
-			}
-
-		}
 	</script>
 </body>
 </html>

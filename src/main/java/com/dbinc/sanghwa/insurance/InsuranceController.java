@@ -1,57 +1,66 @@
 package com.dbinc.sanghwa.insurance;
 
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class InsuranceController {
-	@RequestMapping(value = "/inspetinfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public String inspetinfo(Locale locale, Model model) {
-		return "inspetinfo";
+	@Autowired
+	CalcDBHandle db;
+
+	@RequestMapping(value = "/inscalmoney", method = { RequestMethod.GET, RequestMethod.POST })
+	public String inscalmoney(HttpServletRequest request, Model model, HttpSession session) {
+		return "inscalmoney";
 	}
 
-	@RequestMapping(value = "/inscalcmoney", method = { RequestMethod.GET, RequestMethod.POST })
-	public String inscalcmoney(HttpServletRequest request, Model model) {
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@RequestMapping(value = "/inscusinfo", method = { RequestMethod.GET, RequestMethod.POST })
+	public String inscusinfo(HttpServletRequest request, Model model) {
+		return "inscusinfo";
+	}
 
-		String birth = request.getParameter("birthinput");
+	@RequestMapping(value = "/insobligation", method = { RequestMethod.GET, RequestMethod.POST })
+	public String insobligation(Locale locale, Model model) {
+		return "insobligation";
 
-		int yearbirth = Integer.parseInt(birth.substring(0, 4));
+	}
 
-		Calendar cal = Calendar.getInstance();
-		int todayyear = cal.get(cal.YEAR);
-
-		int agecalc = todayyear - yearbirth + 1;
-
-		model.addAttribute("petinput", request.getParameter("petinput"));
-		model.addAttribute("birthinput", agecalc);
-		return "inscalcmoney";
+	@RequestMapping(value = "/insfinalchk", method = { RequestMethod.GET, RequestMethod.POST })
+	public String insfinalchk(Locale locale, Model model) {
+		return "insfinalchk";
 	}
 
 	@RequestMapping(value = "/selectpetinfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public void selectpetinfo(HttpServletResponse response, Model model) {
+	public void selectpetinfo(HttpServletResponse response, Model model, @RequestParam String p_name) {
 		response.setContentType("text/html; charset=UTF-8");
-		InsDBHandle db = new InsDBHandle();
 		try {
 			PrintWriter out = response.getWriter();
-			String jsonStr = db.selectCalc();
+			System.out.println(p_name);
+
+			String jsonStr = db.selectCalc(p_name);
+
+			model.addAttribute("");
+
 			if (jsonStr != null) {
 				out.print(jsonStr);
 				out.flush();
@@ -60,4 +69,5 @@ public class InsuranceController {
 			e.printStackTrace();
 		}
 	}
+
 }

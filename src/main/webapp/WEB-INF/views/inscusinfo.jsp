@@ -41,6 +41,9 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
+<!-- Daum map api -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./assets/js/postcode.v2.js"></script>
 </head>
 <body class="">
 	<div class="page">
@@ -147,46 +150,49 @@
 			</div>
 			<div class="my-3 my-md-5">
 				<div class="container">
-					<div class="text-center mb-6">
-						<img src="demo/photos/petlogo.png" style="width: 300px;">
-					</div>
 					<div class="row">
-						<form id="calcform" action="inscalmoney" method="POST">
-							<div class="card card-aside" style="width: 800px; margin-left: 180px;">
-								<img src="demo/photos/calcimg2.jpg" class="card-aside-column" style="margin-left: 70px;">
-								<div class="card-body d-flex flex-column" style="margin-left: 80px;">
-									<div class="card-title">반려견 정보 입력하기</div>
+						<div class="col col-login mx-auto">
+							<div class="text-center mb-6">
+								<img src="/resources/demo/photos/petlogo.png" class="h-6" alt="">
+							</div>
+							<form class="card" method="GET" name="cusform">
+								<div class="card-body p-6">
+									<div class="card-title">고객 정보 입력하기</div>
 									<div class="form-group">
 										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="p_name" id="p_name" style="width: 250px;">
+										<input type="text" class="form-control" name="c_name" id="c_name" placeholder="Enter Name">
 									</div>
 									<div class="form-group">
-										<label class="form-label">견종</label>
-										<select name="petinput" id="petinput" class="form-control custom-select" style="width: 250px;">
-											<option value="말티즈">말티즈</option>
-											<option value="푸들">푸들</option>
-											<option value="시츄">시츄</option>
-										</select>
+										<label class="form-label">주민등록번호</label>
+										<input type="text" name="c_pid" id="c_pid" name="field-name" class="form-control" data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
+									</div>
+									<label class="form-label">주소</label>
+									<div class="form-group">
+										<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="c_zipcode" id="c_zipcode" type="text" readonly="readonly">
+										<button type="button" class="btn btn-default" onclick="execPostCode();">
+											<i class="fa fa-search"></i> 우편번호 찾기
+										</button>
 									</div>
 									<div class="form-group">
-										<label class="form-label">생일</label>
-										<input type="date" class="form-control custom-select" name="birthinput" id="birthinput" style="width: 250px;">
+										<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="c_road" id="c_road" type="text" readonly="readonly" />
 									</div>
 									<div class="form-group">
-										<label class="form-label" style="color: gray;">회원이라면</label>
-										<select name="callpet" id="callpet" class="form-control custom-select" style="width: 250px;">
-											<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-											<option value="감자">감자</option>
-											<option value="쵸비">쵸비</option>
-										</select>
+										<input class="form-control" placeholder="상세주소" name="c_detail" id="c_detail" type="text" />
 									</div>
-
+									<div class="form-group">
+										<label class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="cusinfochk" /> <span class="custom-control-label">내 정보 불러오기</span>
+										</label>
+									</div>
 									<div class="form-footer">
-										<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();" style="width: 250px;">보험료 확인</button>
+										<a href="./inscalmoney" type="button" class="btn btn-success" id="prev" style="width: 80px; margin-right: 127px;">이전</a>
+										<a href="./insobligation" type="button" class="btn btn-success" id="prev" style="width: 80px;" onclick="cuschk();">다음</a>
 									</div>
 								</div>
-							</div>
-						</form>
+							</form>
+
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -246,42 +252,23 @@
 	</div>
 	<script>
 		$(function() {
-			$("#callpet").append("<option value=\"고구마\">고구마</option>")
-			$("#callpet").change(function() {
-				s = $("#callpet > option:selected").val();
-				$.get("selectpetinfo", {
-					'p_name' : s
-				}, function(data) {
-					console.log(data)
-					var obj = eval("(" + data + ")");
-					$("#petinput").val(obj[0].p_type).prop("selected", true)
-					$("#birthinput").val(obj[0].p_birth)
-				})
-			});
-
+			/* if ($("input:checkbox[id='cusinfochk']").is(":checked")) {
+			        $("#cname").val("김디비")
+			} */
 		})
 
-		function setfn() {
-			petname = $("#p_name").val()
-			pettype = $("#petinput > option:selected").val();
-			petbirth = $("#birthinput").val()
+		function cuschk() {
+			c_name = $("#c_name").val();
+			c_pid = $("#c_pid").val();
+			c_zipcode = $("#c_zipcode").val();
+			c_road = $("#c_road").val();
+			c_detail = $("#c_detail").val();
 
-			yearbirth = parseInt(petbirth.substr(0, 4));
-			todayyear = new Date().getFullYear();
-
-			agecalc = todayyear - yearbirth + 1;
-
-			sessionStorage.setItem('petname', petname);
-			sessionStorage.setItem('pettype', pettype);
-			sessionStorage.setItem('petbirth', agecalc);
-
-			if (!pettype || !petbirth || !petname) {
-				alert("반려견 정보를 입력하세요.")
-				$('#calcform').attr({
-					'action' : 'index'
-				}).submit();
-			}
-
+			sessionStorage.setItem('c_name', c_name);
+			sessionStorage.setItem('c_pid', c_pid);
+			sessionStorage.setItem('c_zipcode', c_zipcode);
+			sessionStorage.setItem('c_road', c_road);
+			sessionStorage.setItem('c_detail', c_detail);
 		}
 	</script>
 </body>
