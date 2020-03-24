@@ -7,7 +7,7 @@
 					<div class="col-6 col-md-3">
 						<ul class="list-unstyled mb-0">
 							<li><strong>보험</strong></li>
-							<li><a href="#">보험료 산정</a></li>
+							<li><a href="index">보험료 산정</a></li>
 							<li><a href="#">보험 연동</a></li>
 						</ul>
 					</div>
@@ -20,13 +20,13 @@
 					<div class="col-6 col-md-3">
 						<ul class="list-unstyled mb-0">
 							<li><strong>FAQ</strong></li>
-							<li><a href="#">자주 찾는 질문</a></li>
+							<li><a href="faq">자주 찾는 질문</a></li>
 						</ul>
 					</div>
 					<div class="col-6 col-md-3">
 						<ul class="list-unstyled mb-0">
 							<li><strong>프로필</strong></li>
-							<li><a href="#">사용자 설정</a></li>
+							<li><a href="profile">사용자 설정</a></li>
 							<li><a href="#">반려견 설정</a></li>
 						</ul>
 					</div>

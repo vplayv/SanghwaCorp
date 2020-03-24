@@ -48,106 +48,8 @@
 <body class="">
 	<div class="page">
 		<div class="flex-fill">
-			<div class="header py-4">
-				<div class="container">
-					<div class="d-flex">
-						<a class="header-brand" href="./index.html">
-							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
-						</a>
-						<div class="d-flex order-lg-2 ml-auto">
-							<c:choose>
-								<c:when test="${not empty sessionScope.user}">
-									<div class="dropdown d-none d-md-flex">
-										<a class="nav-link icon" data-toggle="dropdown">
-											<i class="fe fe-bell"></i> <span class="nav-unread"></span>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
-												<div>
-													<strong>백암순대국</strong> 5000원 쿠폰
-													<div class="small text-muted">10 minutes ago</div>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
-												<div>
-													<strong>육담와</strong> 제육볶음 12000원
-													<div class="small text-muted">1 hour ago</div>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
-												<div>
-													<strong>오빠닭</strong> 코로나바이러스
-													<div class="small text-muted">2 hours ago</div>
-												</div>
-											</a>
-											<div class="dropdown-divider"></div>
-											<a href="#" class="dropdown-item text-center">Mark all as read</a>
-										</div>
-									</div>
-									<div class="dropdown">
-										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-											<span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span> <span class="ml-2 d-none d-lg-block"> <span class="text-default">${sessionScope.user.c_id}</span> <small class="text-muted d-block mt-1">${sessionScope.user.c_name}</small>
-											</span>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="profile">
-												<i class="dropdown-icon fe fe-user"></i> 사용자 설정
-											</a>
-											<a class="dropdown-item" href="#">
-												<i class="dropdown-icon fe fe-settings"></i> 반려견 설정
-											</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="logout">
-												<i class="dropdown-icon fe fe-log-out"></i> 로그아웃
-											</a>
-										</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="nav-item d-none d-md-flex">
-										<a href="./login" class="btn btn-sm btn-outline-success">로그인</a>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
-							<span class="header-toggler-icon"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg order-lg-first">
-							<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fa fa-edit"></i> 보험
-									</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./index" class="dropdown-item ">보험료 산정</a>
-										<a href="./index" class="dropdown-item ">보험 연동</a>
-									</div></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fa fa-hospital-o"></i> 동물병원
-									</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./index" class="dropdown-item ">동물병원 조회</a>
-									</div></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fa fa-question"></i> FAQ
-									</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./faq" class="dropdown-item ">자주찾는 질문</a>
-									</div></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%@ include file="header.jsp"%>
+			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
 				<div class="container">
 					<c:choose>
@@ -280,50 +182,51 @@
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>
-		<script type="text/javascript">
-			$(function() {
-				var c_gender = '${sessionScope.user.c_gender}'
-				console.log(c_gender);
-				$('input:radio[name=c_gender]:input[value=' + c_gender + ']')
-						.attr("checked", true);
-			})
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			var c_gender = '${sessionScope.user.c_gender}'
+			console.log(c_gender);
+			$('input:radio[name=c_gender]:input[value=' + c_gender + ']').attr(
+					"checked", true);
+		})
 
-			$(function() {
-				var result = '${alertmsg}';
-				var updateok = "회원정보 수정에 성공했습니다.";
-				var updatefail = "업데이트 fail";
-				if (result == updateok) {
-					alert(updateok);
-				} else if (result == updatefail) {
-					alert(updatefail);
-				}
+		$(function() {
+			var result = '${alertmsg}';
+			var updateok = "회원정보 수정에 성공했습니다.";
+			var updatefail = "업데이트 fail";
+			if (result == updateok) {
+				alert(updateok);
+			} else if (result == updatefail) {
+				alert(updatefail);
+			}
 
-			})
+		})
 
-			$(function() {
-				$("#alert-success").hide();
-				$("#alert-danger").hide();
-				$("input").keyup(function() {
-					console.log("keyup");
-					var pwd1 = $("#c_pw").val();
-					var pwd2 = $("#c_pw_check").val();
-					if (pwd1 != "" || pwd2 != "") {
-						if (pwd1 == pwd2) {
-							$("#alert-success").show();
-							$("#alert-danger").hide();
-							$("#submit").removeAttr("disabled");
-						} else {
-							$("#alert-success").hide();
-							$("#alert-danger").show();
-							$("#submit").attr("disabled", "disabled");
-						}
+		$(function() {
+			$("#alert-success").hide();
+			$("#alert-danger").hide();
+			$("input").keyup(function() {
+				console.log("keyup");
+				var pwd1 = $("#c_pw").val();
+				var pwd2 = $("#c_pw_check").val();
+				if (pwd1 != "" || pwd2 != "") {
+					if (pwd1 == pwd2) {
+						$("#alert-success").show();
+						$("#alert-danger").hide();
+						$("#submit").removeAttr("disabled");
+					} else {
+						$("#alert-success").hide();
+						$("#alert-danger").show();
+						$("#submit").attr("disabled", "disabled");
 					}
-				});
+				}
 			});
+		});
 
-			$("#update_btn").click(function() {
-				$("#updateform").submit();
-			});
-		</script>
+		$("#update_btn").click(function() {
+			$("#updateform").submit();
+		});
+	</script>
 </body>
 </html>
