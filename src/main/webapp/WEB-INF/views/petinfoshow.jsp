@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
 <!doctype html>
 <html lang="en" dir="ltr">
@@ -39,183 +40,64 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
-<style>
-#dog_emptyprofile {
-	width: 150px;
-	height: 150px;
-}
-</style>
+
 </head>
 <body class="">
 	<div class="page">
 		<div class="flex-fill">
-			<div class="header py-4">
-				<div class="container">
-					<div class="d-flex">
-						<a class="header-brand" href="./index.html">
-							<img src="demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
-						</a>
-						<div class="d-flex order-lg-2 ml-auto">
-							<div class="dropdown d-none d-md-flex">
-								<a class="nav-link icon" data-toggle="dropdown">
-									<i class="fe fe-bell"></i> <span class="nav-unread"></span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<a href="#" class="dropdown-item d-flex">
-										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
-										<div>
-											<strong>Nathan</strong> pushed new commit: Fix page load performance issue.
-											<div class="small text-muted">10 minutes ago</div>
-										</div>
-									</a>
-									<a href="#" class="dropdown-item d-flex">
-										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
-										<div>
-											<strong>Alice</strong> started new task: Tabler UI design.
-											<div class="small text-muted">1 hour ago</div>
-										</div>
-									</a>
-									<a href="#" class="dropdown-item d-flex">
-										<span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
-										<div>
-											<strong>Rose</strong> deployed new version of NodeJS REST Api V3
-											<div class="small text-muted">2 hours ago</div>
-										</div>
-									</a>
-									<div class="dropdown-divider"></div>
-									<a href="#" class="dropdown-item text-center">Mark all as read</a>
-								</div>
-							</div>
-							<div class="dropdown">
-								<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-									<span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span> <span class="ml-2 d-none d-lg-block"> <span class="text-default">Jane Pearson</span> <small class="text-muted d-block mt-1">Administrator</small>
-									</span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<a class="dropdown-item" href="#">
-										<i class="dropdown-icon fe fe-user"></i> 회원정보
-									</a>
-									<a class="dropdown-item" href="#">
-										<i class="dropdown-icon fe fe-gitlab"></i> 반려견정보
-									</a>
-									<a class="dropdown-item" href="#">
-										<i class="dropdown-icon fe fe-log-out"></i> 로그아웃
-									</a>
-								</div>
-							</div>
-						</div>
-						<a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
-							<span class="header-toggler-icon"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-3 ml-auto">
-							<form class="input-icon my-3 my-lg-0">
-								<input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-								<div class="input-icon-addon">
-									<i class="fe fe-search"></i>
-								</div>
-							</form>
-						</div>
-						<div class="col-lg order-lg-first">
-							<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-home"></i> 보험
-									</a>
-									<div class="dropdown-menu dropdown-menu-arrow">
-										<a href="./index" class="dropdown-item ">보험료 산정</a>
-										<a href="./charts.html" class="dropdown-item ">보험 연동</a>
-										<a href="./test" class="dropdown-item ">test</a>
-									</div></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-box"></i> 동물병원
-									</a></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-calendar"></i> FAQ
-									</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			<%@ include file="header.jsp"%>
+			<%@ include file="menu.jsp"%>
 			<div class="row justify-content-md-center">
-				<div class="col-lg-4">
-					<div class="card" style="text-align: center;">
-						<div class="card-header">
-							<h3>반려견 정보</h3>
-						</div>
-						<div class="card-body">
-							<img src="assets/images/browsers/dogex.jpg" class="card-img-top rounded-circle" style="width: 300px; height: 300px">
-						</div>
-						<div class="card-footer">
-							p_name<br> p_type<br> p_birth<br> p_gender<br> p_weight<br> p_status<br> <br>
-							<button type="button" class="btn btn-primary">반려견 수정</button>
+				<c:forEach var="a" items="${arr}">
+					<div class="col-lg-3">
+						<div class="card" style="text-align: center;">
+							<div class="card-header">
+								<h3>반려견 정보</h3>
+							</div>
+							<div class="card-body">
+								<img src="${a.p_photo}" class="card-img-top rounded-circle" style="width: 250px; height: 250px">
+							</div>
+							<div class="card-footer">
+								<h3>${a.p_name}</h3>
+								견종:
+								<c:choose>
+									<c:when test="${a.p_type eq 'maltese'}">
+                                                                                말티즈
+                                                                        </c:when>
+									<c:when test="${a.p_type eq 'poodle'}">
+                                                                                푸들
+                                                                        </c:when>
+									<c:when test="${a.p_type eq 'shitzu'}">
+                                                                                시츄
+                                                                        </c:when>
+								</c:choose>
+								<br> 생일: ${a.p_birth}<br> 성별:
+								<c:choose>
+									<c:when test="${a.p_gender eq 'm_option'}">
+                                                                                왕자
+                                                                        </c:when>
+									<c:when test="${a.p_gender eq 'w_option'}">
+                                                                                공주
+                                                                        </c:when>
+								</c:choose>
+								<br> 몸무게: ${a.p_weight}kg<br> 중성화 여부:
+								<c:choose>
+									<c:when test="${a.p_status eq 'y_option'}">
+                                                                                O
+                                                                        </c:when>
+									<c:when test="${a.p_status eq 'n_option'}">
+                                                                                X
+                                                                        </c:when>
+								</c:choose>
+								<br> <br> <br>
+								<button type="button" onclick="location.href='./petinfoupdate?p_idx=${a.p_idx}' " class="btn btn-success">반려견 정보 수정</button>
+							</div>
 						</div>
 					</div>
-
-				</div>
+				</c:forEach>
 			</div>
 		</div>
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="row">
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">First link</a></li>
-									<li><a href="#">Second link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Third link</a></li>
-									<li><a href="#">Fourth link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Fifth link</a></li>
-									<li><a href="#">Sixth link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Other link</a></li>
-									<li><a href="#">Last link</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mt-4 mt-lg-0">Premium and Open Source dashboard template with responsive and high quality UI. For Free!</div>
-				</div>
-			</div>
-		</div>
-		<footer class="footer">
-			<div class="container">
-				<div class="row align-items-center flex-row-reverse">
-					<div class="col-auto ml-lg-auto">
-						<div class="row align-items-center">
-							<div class="col-auto">
-								<ul class="list-inline list-inline-dots mb-0">
-									<li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-									<li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-						Copyright © 2020
-						<a href="https://www.dbinc.co.kr/">DB Inc.</a>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<%@ include file="footer.jsp"%>
 	</div>
 </body>
 </html>

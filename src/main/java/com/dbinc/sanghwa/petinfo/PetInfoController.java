@@ -1,8 +1,15 @@
 package com.dbinc.sanghwa.petinfo;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Locale;
 
 import javax.sql.DataSource;
@@ -35,15 +42,13 @@ public class PetInfoController {
 			@RequestParam("p_weight") int p_weight, @RequestParam("p_status") String p_status, Model model) {
 		try {
 			// 한글 안깨지게..
-			// String s = new String(p_photo.getOriginalFilename().getBytes("8859_1"),
-			// "utf-8");
+			String s = new String(p_photo.getOriginalFilename().getBytes("8859_1"), "utf-8");
 			InputStream pfile = p_photo.getInputStream();
 			// db connection 객체 얻어오기
 			Connection conn = dataSource.getConnection();
-			String sql = "insert into pet values(?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into pet values(pet_sequence.nextVal,?,?,?,?,to_date(?, 'yyyy-mm-dd'),?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			// pstmt.setString(1, s);
-			pstmt.setInt(1, 1);
+			pstmt.setString(1, s);
 			pstmt.setBlob(2, pfile);
 			pstmt.setString(3, p_name);
 			pstmt.setString(4, p_type);
@@ -51,55 +56,89 @@ public class PetInfoController {
 			pstmt.setString(6, p_gender);
 			pstmt.setInt(7, p_weight);
 			pstmt.setString(8, p_status);
-			pstmt.setString(9, "hello");
+			// c_id 추가
+			pstmt.setString(9, "test");
 			/* String p_id = (String) session.getAttribute("c_id"); */
 			/* pstmt.setString(7, p_id); */
 
 			pstmt.execute();
 			conn.close();
-			model.addAttribute("insresult", "추가성공");
+			model.addAttribute("insresult", "반려견 정보를 추가했습니다.");
 		} catch (Exception e) {
-			model.addAttribute("insresult", "실패" + e.getMessage());
+			model.addAttribute("insresult", "반려견 정보 추가를 실패했습니다. " + e.getMessage());
 		}
-		return "saveresult";
+		return "petinfoinsertsaveresult";
 	}
 
 	@RequestMapping(value = "/petinfoupdate", method = RequestMethod.GET)
-	public String petinfoupdate(Locale locale, Model model) {
+	public String petinfoupdate(@RequestParam("p_idx") int p_idx, Locale locale, Model model) {
+		ArrayList<PetInfoModel> arr = new ArrayList<PetInfoModel>();
+		try {
+			Connection conn = dataSource.getConnection();
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(
+					"select p_idx, p_photo, p_name, p_type, p_birth, p_gender, p_weight, p_status from pet where p_idx="
+							+ p_idx);
+
+			while (rs.next()) {
+				int p_idx1 = rs.getInt("p_idx");
+				Blob p_photo = rs.getBlob("p_photo");
+				String p_name = rs.getString("p_name");
+				String p_type = rs.getString("p_type");
+				Date p_birth = rs.getDate("p_birth");
+				String p_gender = rs.getString("p_gender");
+				int p_weight = rs.getInt("p_weight");
+				String p_status = rs.getString("p_status");
+
+				// 픽셀값을 byte array로 변환
+				byte[] bImg = p_photo.getBytes(1, (int) p_photo.length());
+				// 인코딩
+				String sImg = "data:img/png;base64," + Base64.getEncoder().encodeToString(bImg);
+				arr.add(new PetInfoModel(p_idx1, sImg, p_name, p_type, p_birth, p_gender, p_weight, p_status));
+			}
+			rs.close();
+			model.addAttribute("arr", arr);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block e.printStackTrace();
+		}
 		return "petinfoupdate";
 	}
 
-	/*
-	 * @RequestMapping(value = "/petinfoupdate", method = RequestMethod.GET) public
-	 * String petinfoupdate(Locale locale, Model model) { return "petinfoupdate"; }
-	 * 
-	 * @RequestMapping(value = "/petinfoupdatesave", method = RequestMethod.POST)
-	 * public String petinfoupdatesave(@RequestParam("p_photo") MultipartFile
-	 * p_photo,
-	 * 
-	 * @RequestParam("p_name") String p_name, @RequestParam("p_type") String p_type,
-	 * 
-	 * @RequestParam("p_birth") String p_birth, @RequestParam("p_gender") String
-	 * p_gender,
-	 * 
-	 * @RequestParam("p_weight") int p_weight, @RequestParam("p_status") String
-	 * p_status, Model model) { try { // 한글 안깨지게.. // String s = new
-	 * String(p_photo.getOriginalFilename().getBytes("8859_1"), // "utf-8");
-	 * InputStream pfile = p_photo.getInputStream(); // db connection 객체 얻어오기
-	 * Connection conn = dataSource.getConnection(); String sql =
-	 * "update pet set pfile=?, p_name=?, p_type=?,p_birth=?, p_gender=?,p_weight=?, p_status=? where p_id=?"
-	 * ;
-	 * 
-	 * PreparedStatement pstmt = conn.prepareStatement(sql); // pstmt.setString(1,
-	 * s); pstmt.setBlob(1, pfile); pstmt.setString(2, p_name); pstmt.setString(3,
-	 * p_type); pstmt.setString(4, p_birth); pstmt.setString(5, p_gender);
-	 * pstmt.setInt(6, p_weight); pstmt.setString(7, p_status); String p_id =
-	 * (String) session.getAttribute("c_id"); pstmt.setString(7, p_id);
-	 * 
-	 * pstmt.execute(); conn.close(); model.addAttribute("insresult", "추가성공"); }
-	 * catch (Exception e) { model.addAttribute("insresult", "실패" + e.getMessage());
-	 * } return "saveresult"; }
-	 */
+	@RequestMapping(value = "/petinfoupdatesave", method = RequestMethod.POST)
+	public String petinfoupdatesave(@RequestParam("p_idx") int p_idx, @RequestParam("p_photo") MultipartFile p_photo,
+			@RequestParam("p_name") String p_name, @RequestParam("p_type") String p_type,
+			@RequestParam("p_birth") String p_birth, @RequestParam("p_gender") String p_gender,
+			@RequestParam("p_weight") int p_weight, @RequestParam("p_status") String p_status, Model model) {
+		try {
+			// 한글 안깨지게..
+			String s = new String(p_photo.getOriginalFilename().getBytes("8859_1"), "utf-8");
+			InputStream pfile = p_photo.getInputStream();
+			// db connection 객체 얻어오기
+			Connection conn = dataSource.getConnection();
+			String sql = "update pet set p_photoname=?, p_photo=?, p_name=? p_type=?, p_birth = to_date(?, 'yyyy-mm-dd'), p_gender=? p_weight=?, p_status=? where = p_idx"
+					+ p_idx;
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, s);
+			pstmt.setBlob(2, pfile);
+			pstmt.setString(3, p_name);
+			pstmt.setString(4, p_type);
+			pstmt.setString(5, p_birth);
+			pstmt.setString(6, p_gender);
+			pstmt.setInt(7, p_weight);
+			pstmt.setString(8, p_status);
+
+			/* String p_id = (String) session.getAttribute("c_id"); */
+			/* pstmt.setString(7, p_id); */
+
+			pstmt.execute();
+			conn.close();
+			model.addAttribute("upresult", "반려견 정보를 수정했습니다.");
+		} catch (Exception e) {
+			model.addAttribute("upresult", "반려견 정보 수정을 실패했습니다. " + e.getMessage());
+		}
+		return "petinfoupdatesaveresult";
+	}
 
 	@RequestMapping(value = "/petinfoempty", method = RequestMethod.GET)
 	public String petinfoempty(Locale locale, Model model) {
@@ -108,6 +147,33 @@ public class PetInfoController {
 
 	@RequestMapping(value = "/petinfoshow", method = RequestMethod.GET)
 	public String petinfoshow(Locale locale, Model model) {
+		ArrayList<PetInfoModel> arr = new ArrayList<PetInfoModel>();
+		try {
+			Connection conn = dataSource.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select p_idx, p_photo, p_name, p_type, p_birth, p_gender, p_weight, p_status from pet");
+			while (rs.next()) {
+				int p_idx1 = rs.getInt("p_idx");
+				Blob p_photo = rs.getBlob("p_photo");
+				String p_name = rs.getString("p_name");
+				String p_type = rs.getString("p_type");
+				Date p_birth = rs.getDate("p_birth");
+				String p_gender = rs.getString("p_gender");
+				int p_weight = rs.getInt("p_weight");
+				String p_status = rs.getString("p_status");
+
+				// 픽셀값을 byte array로 변환
+				byte[] bImg = p_photo.getBytes(1, (int) p_photo.length());
+				// 인코딩
+				String sImg = "data:img/png;base64," + Base64.getEncoder().encodeToString(bImg);
+				arr.add(new PetInfoModel(p_idx1, sImg, p_name, p_type, p_birth, p_gender, p_weight, p_status));
+			}
+			rs.close();
+			model.addAttribute("arr", arr);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block e.printStackTrace();
+		}
 		return "petinfoshow";
 	}
 }

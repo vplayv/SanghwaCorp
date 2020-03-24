@@ -40,39 +40,26 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
-<style>
-#dog_emptyprofile {
-	width: 150px;
-	height: 150px;
-}
-</style>
 </head>
 <body class="">
 	<div class="page">
 		<div class="flex-fill">
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
-			<div class="my-3 my-md-5">
-				<c:choose>
-					<c:when test="${not empty sessionScope.user}">
-					</c:when>
-					<c:otherwise>
-						<div class="row justify-content-md-center">
-							<div class="col-lg-6">
-								<div class="card" style="text-align: center;">
-									<div class="card-body">
-										<img src="assets/images/browsers/emptydog.jpg" class="card-img-top" style="width: 150px; height: 150px"><br>
-										<br>
-										<h3>반려견 프로필을 등록해주세요!</h3>
-									</div>
-									<div class="card-footer">
-										<button type="button" class="btn btn-success" onclick="location.href='./petinfoinsert' ">반려견 등록</button>
-									</div>
-								</div>
-							</div>
+			<div class="row justify-content-md-center">
+				<div class="col-lg-5">
+					<div class="card" style="text-align: center;">
+						<div class="card-header" style="text-align: center;">
+							<h1>${upresult}</h1>
 						</div>
-					</c:otherwise>
-				</c:choose>
+						<div class="card-body">
+							<img src="assets/images/browsers/dbpet.JPG">
+						</div>
+						<div class="card-footer">
+							<button type="button" onclick="location.href='./index' " class="btn btn-success">메인으로</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>
