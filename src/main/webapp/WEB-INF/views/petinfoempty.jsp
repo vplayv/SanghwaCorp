@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -55,14 +55,11 @@
 			<div class="my-3 my-md-5">
 				<c:choose>
 					<c:when test="${not empty sessionScope.user}">
-					</c:when>
-					<c:otherwise>
 						<div class="row justify-content-md-center">
 							<div class="col-lg-6">
 								<div class="card" style="text-align: center;">
 									<div class="card-body">
-										<img src="assets/images/browsers/emptydog.jpg" class="card-img-top" style="width: 150px; height: 150px"><br>
-										<br>
+										<img src="assets/images/browsers/emptydog.jpg" class="card-img-top" style="width: 150px; height: 150px"><br> <br>
 										<h3>반려견 프로필을 등록해주세요!</h3>
 									</div>
 									<div class="card-footer">
@@ -71,6 +68,9 @@
 								</div>
 							</div>
 						</div>
+					</c:when>
+					<c:otherwise>
+					<!-- 로그인 페이지로.. -->
 					</c:otherwise>
 				</c:choose>
 			</div>
