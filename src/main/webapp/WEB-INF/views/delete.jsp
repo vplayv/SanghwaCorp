@@ -52,7 +52,7 @@
 				<div class="container">
 					<div class="d-flex">
 						<a class="header-brand" href="./index.html">
-							<img src="demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
+							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
 							<c:choose>
@@ -94,21 +94,12 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item" href="profile">
-												<i class="dropdown-icon fe fe-user"></i> 프로필
+												<i class="dropdown-icon fe fe-user"></i> 사용자 설정
 											</a>
 											<a class="dropdown-item" href="#">
-												<i class="dropdown-icon fe fe-settings"></i> Settings
-											</a>
-											<a class="dropdown-item" href="#">
-												<span class="float-right"><span class="badge badge-primary">6</span></span> <i class="dropdown-icon fe fe-mail"></i> Inbox
-											</a>
-											<a class="dropdown-item" href="#">
-												<i class="dropdown-icon fe fe-send"></i> Message
+												<i class="dropdown-icon fe fe-settings"></i> 반려견 설정
 											</a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">
-												<i class="dropdown-icon fe fe-help-circle"></i> Need help?
-											</a>
 											<a class="dropdown-item" href="logout">
 												<i class="dropdown-icon fe fe-log-out"></i> 로그아웃
 											</a>
@@ -131,30 +122,27 @@
 			<div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
 				<div class="container">
 					<div class="row align-items-center">
-						<div class="col-lg-3 ml-auto">
-							<form class="input-icon my-3 my-lg-0">
-								<input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-								<div class="input-icon-addon">
-									<i class="fe fe-search"></i>
-								</div>
-							</form>
-						</div>
 						<div class="col-lg order-lg-first">
 							<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-home"></i> 보험
+										<i class="fa fa-edit"></i> 보험
 									</a>
 									<div class="dropdown-menu dropdown-menu-arrow">
 										<a href="./index" class="dropdown-item ">보험료 산정</a>
-										<a href="./charts.html" class="dropdown-item ">보험 연동</a>
-										<a href="./test" class="dropdown-item ">test</a>
+										<a href="./index" class="dropdown-item ">보험 연동</a>
 									</div></li>
 								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-box"></i> 동물병원
-									</a></li>
+										<i class="fa fa-hospital-o"></i> 동물병원
+									</a>
+									<div class="dropdown-menu dropdown-menu-arrow">
+										<a href="./index" class="dropdown-item ">동물병원 조회</a>
+									</div></li>
 								<li class="nav-item dropdown"><a href="javascript:void(0)" class="nav-link" data-toggle="dropdown">
-										<i class="fe fe-calendar"></i> FAQ
-									</a></li>
+										<i class="fa fa-question"></i> FAQ
+									</a>
+									<div class="dropdown-menu dropdown-menu-arrow">
+										<a href="./faq" class="dropdown-item ">자주찾는 질문</a>
+									</div></li>
 							</ul>
 						</div>
 					</div>
@@ -192,6 +180,7 @@
 								<div class="col-9">
 									<div class="card">
 										<div class="card-header">
+											<div class="card-status bg-green"></div>
 											<h3 class="card-title">계정 탈퇴</h3>
 										</div>
 										<div class="card-body">
@@ -209,8 +198,7 @@
 											<h5 id="setup-environment">③ "ㅇㅇㅇ"이 회원 자격을 제한·정지 시킨 후, 동일한 행위가 2회 이상 반복되거나 30일 이내에 그 사유가 시정되지 아니하는 경우 "ㅇㅇㅇ"은 회원자격을 상실시킬 수 있습니다.</h5>
 											<br>
 											<h5 id="setup-environment">④ "ㅇㅇㅇ"이 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 이를 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다.</h5>
-											<br>
-											<img class="card-img-top" src="./demo/photos/sad_cat.png" alt="ㅠㅠ"><br><br>
+											<br> <img class="card-img-top" src="./demo/photos/sad_cat.png" alt="ㅠㅠ"><br> <br>
 											<button type="button" id="delete_btn" class="btn btn-square btn-danger btn-block">계정 탈퇴</button>
 										</div>
 									</div>
@@ -224,81 +212,27 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="row">
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">First link</a></li>
-									<li><a href="#">Second link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Third link</a></li>
-									<li><a href="#">Fourth link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Fifth link</a></li>
-									<li><a href="#">Sixth link</a></li>
-								</ul>
-							</div>
-							<div class="col-6 col-md-3">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">Other link</a></li>
-									<li><a href="#">Last link</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 mt-4 mt-lg-0">Premium and Open Source dashboard template with responsive and high quality UI. For Free!</div>
-				</div>
-			</div>
-		</div>
-		<footer class="footer">
-			<div class="container">
-				<div class="row align-items-center flex-row-reverse">
-					<div class="col-auto ml-lg-auto">
-						<div class="row align-items-center">
-							<div class="col-auto">
-								<ul class="list-inline list-inline-dots mb-0">
-									<li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-									<li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-						Copyright © 2020
-						<a href="https://www.dbinc.co.kr/">DB Inc.</a>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<%@ include file="footer.jsp"%>
 		<script type="text/javascript">
 			$('#delete_btn').click(function(event) {
 				var result = confirm('정말로 탈퇴하실건가용용?');
 				if (result) {
 					var user = {
-							c_id : "${sessionScope.user.c_id}",
-							c_pw : "${sessionScope.user.c_pw}",
-							c_name : "${sessionScope.user.c_name}",
-							c_pid : "${sessionScope.user.c_pid}",
-							c_gender : "${sessionScope.user.c_gender}",
-							c_zipcode : "${sessionScope.user.c_zipcode}",
-							c_road : "${sessionScope.user.c_road}",
-							c_detail : "${sessionScope.user.c_detail}",
-							c_phone : "${sessionScope.user.c_phone}",
-							c_email : "${sessionScope.user.c_email}",
-							c_joindate : "${sessionScope.user.c_joindate}"
-							};
+						c_id : "${sessionScope.user.c_id}",
+						c_pw : "${sessionScope.user.c_pw}",
+						c_name : "${sessionScope.user.c_name}",
+						c_pid : "${sessionScope.user.c_pid}",
+						c_gender : "${sessionScope.user.c_gender}",
+						c_zipcode : "${sessionScope.user.c_zipcode}",
+						c_road : "${sessionScope.user.c_road}",
+						c_detail : "${sessionScope.user.c_detail}",
+						c_phone : "${sessionScope.user.c_phone}",
+						c_email : "${sessionScope.user.c_email}",
+						c_joindate : "${sessionScope.user.c_joindate}"
+					};
 					console.log(user)
 					console.log("탈퇴");
-					$.post("/sanghwa/deleteProcess", user, function(data){
+					$.post("/sanghwa/deleteProcess", user, function(data) {
 						console.log(data);
 						console.log("삭제성공");
 						location = "index";
