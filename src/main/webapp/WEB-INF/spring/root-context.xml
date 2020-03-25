@@ -66,5 +66,6 @@
 	<bean id="pagi" class="com.dbinc.sanghwa.faq.Pagination">
 	</bean>
 	<!-- faq -->
-
+	<bean id="mapVO" class="com.dbinc.sanghwa.map.MapVO"></bean>
+	<bean id="mapDBHandle" class="com.dbinc.sanghwa.map.MapDBHandle"></bean>
 </beans>
