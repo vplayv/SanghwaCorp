@@ -41,9 +41,6 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
-<!-- Daum map api -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="./assets/js/postcode.v2.js"></script>
 </head>
 <body class="">
 	<div class="page">
@@ -148,51 +145,28 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- complete -->
 			<div class="my-3 my-md-5">
 				<div class="container">
-					<div class="row">
-						<div class="col col-login mx-auto">
-							<div class="text-center mb-6">
-								<img src="/resources/demo/photos/petlogo.png" class="h-6" alt="">
-							</div>
-							<form class="card" method="POST" id="cusform" action="insobligation">
-								<div class="card-body p-6">
-									<div class="card-title">고객 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="c_name" id="c_name" placeholder="Enter Name">
-									</div>
-									<div class="form-group">
-										<label class="form-label">주민등록번호</label>
-										<input type="text" name="c_pid" id="c_pid" class="form-control" data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
-									</div>
-									<label class="form-label">주소</label>
-									<div class="form-group">
-										<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="c_zipcode" id="c_zipcode" type="text">
-										<button type="button" class="btn btn-default" onclick="execPostCode();">
-											<i class="fa fa-search"></i> 우편번호 찾기
-										</button>
-									</div>
-									<div class="form-group">
-										<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="c_road" id="c_road" type="text" />
-									</div>
-									<div class="form-group">
-										<input class="form-control" placeholder="상세주소" name="c_detail" id="c_detail" type="text" />
-									</div>
-									<div class="form-group">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="cusinfochk" /> <span class="custom-control-label">내 정보 불러오기</span>
-										</label>
+					<div class="text-center mb-6">
+						<img src="demo/photos/petlogo.png" style="width: 300px;">
+					</div>
+					<div class="row" style="padding-left: 350px;">
+						<form id="calcform" action="insconnect" method="POST">
+							<div class="card">
+								<img class="card-img-top" src="./demo/photos/final.jpg" alt="And this isn&#39;t my nose. This is a false one.">
+								<div class="card-body d-flex flex-column">
+									<div style="font-size: 20px; text-align: center;">
+										사랑스러운 <span id="p_name" style="font-weight: bold;"></span>의 보험 가입을 환영합니다.
 									</div>
 									<div class="form-footer">
-										<a href="./inscalmoney" type="button" class="btn btn-success" id="prev" style="width: 80px; margin-right: 127px;">이전</a>
-										<button type="button" class="btn btn-success" id="next" style="width: 80px;" onclick="cuschk();">다음</button>
+										<button type="submit" id="connectbtn" class="btn btn-success btn-block" style="width: 200px; margin-left: 115px;">보험 연동하러 가기</button>
+
 									</div>
 								</div>
-							</form>
-
-						</div>
-
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -251,58 +225,7 @@
 		</footer>
 	</div>
 	<script>
-                
-                $("#cusinfochk").on("click",function (){
-                        if ($("#cusinfochk:checked").length > 0) {
-                                var json = {
-                                                'c_id' : '${sessionScope.user.c_id}'
-                                        };
-                                        console.log(json);
-                                        $.get("selectcusinfo", json, function(data) {
-                                                console.log(data);
-                                                var cusobj = eval("(" + data + ")");
-                                                console.log(cusobj);
-                                                $("#c_name").val(cusobj[0].c_name);
-                                                $("#c_pid").val(cusobj[0].c_pid);
-                                                $("#c_zipcode").val(cusobj[0].c_zipcode);
-                                                $("#c_road").val(cusobj[0].c_road);
-                                                $("#c_detail").val(cusobj[0].c_detail);
-                        });
-                        }
-                        else {
-                                $("#c_name").val("");
-                                $("#c_pid").val("");
-                                $("#c_zipcode").val("");
-                                $("#c_road").val("");
-                                $("#c_detail").val("");
-                        }
-                })
-
-                function cuschk() {
-                        c_name = $("#c_name").val();
-                        c_pid = $("#c_pid").val();
-                        c_zipcode = $("#c_zipcode").val();
-                        c_road = $("#c_road").val();
-                        c_detail = $("#c_detail").val();
-
-                        sessionStorage.setItem('c_name', c_name);
-                        sessionStorage.setItem('c_pid', c_pid);
-                        sessionStorage.setItem('c_zipcode', c_zipcode);
-                        sessionStorage.setItem('c_road', c_road);
-                        sessionStorage.setItem('c_detail', c_detail);
-                        
-                        if (!c_name || !c_pid || !c_zipcode || !c_road) {
-                                alert("고객 정보를 입력하세요.")
-                                
-                        }
-                        else{
-                                $('#cusform').attr({
-                                        'action' : 'insobligation'
-                                }).submit();
-                        }
-                }
-                
-        
+                $("#p_name").text(sessionStorage.getItem("petname"));
         </script>
 </body>
 </html>

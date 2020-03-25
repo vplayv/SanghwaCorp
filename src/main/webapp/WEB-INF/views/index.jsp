@@ -65,7 +65,7 @@
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
-			<div class="fullscreen_bg2"></div>
+				<div class="fullscreen_bg2"></div>
 				<div class="container">
 					<div class="text-center mb-6">
 						<img src="demo/photos/petlogo.png" style="width: 300px;">
@@ -88,9 +88,9 @@
 											<div class="form-group">
 												<label class="form-label">견종</label>
 												<select name="petinput" id="petinput" class="form-control custom-select">
-													<option value="말티즈">말티즈</option>
-													<option value="푸들">푸들</option>
-													<option value="시츄">시츄</option>
+													<option value="maltese">말티즈</option>
+													<option value="poodle">푸들</option>
+													<option value="shitzu">시츄</option>
 												</select>
 											</div>
 											<div class="form-group">
@@ -101,8 +101,6 @@
 												<label class="form-label" style="color: gray;">회원이라면</label>
 												<select name="callpet" id="callpet" class="form-control custom-select">
 													<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-													<option value="감자">감자</option>
-													<option value="쵸비">쵸비</option>
 												</select>
 											</div>
 											<div class="form-footer">
@@ -122,7 +120,24 @@
 	</div>
 	<script>
 		$(function() {
-			$("#callpet").append("<option value=\"고구마\">고구마</option>")
+			var json = {
+				'c_id' : '${sessionScope.user.c_id}'
+			};
+			console.log(json);
+			$.get("selectpetinput", json, function(data) {
+				console.log(data);
+				var obj2 = eval("(" + data + ")");
+				console.log(obj2);
+
+				$.each(obj2, function(key, value) {
+					$("#callpet").append(
+							"<option value=\"" + obj2[key].p_name + "\">"
+									+ obj2[key].p_name + "</option>");
+
+				});
+
+			})
+
 			$("#callpet").change(function() {
 				s = $("#callpet > option:selected").val();
 				$.get("selectpetinfo", {
@@ -130,6 +145,8 @@
 				}, function(data) {
 					console.log(data)
 					var obj = eval("(" + data + ")");
+					$("#p_name").val(obj[0].p_name)
+					var pi = $("#petinput").val(obj[0].p_type)
 					$("#petinput").val(obj[0].p_type).prop("selected", true)
 					$("#birthinput").val(obj[0].p_birth)
 				})
@@ -153,8 +170,10 @@
 
 			if (!pettype || !petbirth || !petname) {
 				alert("반려견 정보를 입력하세요.")
+
+			} else {
 				$('#calcform').attr({
-					'action' : 'index'
+					'action' : 'inscalmoney'
 				}).submit();
 			}
 

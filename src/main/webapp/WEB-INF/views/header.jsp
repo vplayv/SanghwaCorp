@@ -48,7 +48,7 @@
 									<i class="dropdown-icon fe fe-user"></i> 사용자 설정
 								</a>
 								<a class="dropdown-item" href="petinfoshow">
-									<i class="dropdown-icon fe fe-settings"></i> 반려견 설정
+									<i class="dropdown-icon fe fe-gitlab"></i> 반려견 설정
 								</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout">

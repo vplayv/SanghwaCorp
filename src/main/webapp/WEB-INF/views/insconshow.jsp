@@ -41,9 +41,6 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
-<!-- Daum map api -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="./assets/js/postcode.v2.js"></script>
 </head>
 <body class="">
 	<div class="page">
@@ -150,49 +147,58 @@
 			</div>
 			<div class="my-3 my-md-5">
 				<div class="container">
-					<div class="row">
+					<div class="row" style="margin-right: 200px;">
 						<div class="col col-login mx-auto">
-							<div class="text-center mb-6">
-								<img src="/resources/demo/photos/petlogo.png" class="h-6" alt="">
-							</div>
-							<form class="card" method="POST" id="cusform" action="insobligation">
-								<div class="card-body p-6">
-									<div class="card-title">고객 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="c_name" id="c_name" placeholder="Enter Name">
-									</div>
-									<div class="form-group">
-										<label class="form-label">주민등록번호</label>
-										<input type="text" name="c_pid" id="c_pid" class="form-control" data-mask="000000-0000000" data-mask-clearifnotmatch="true" placeholder="000000-0000000" autocomplete="off" maxlength="14">
-									</div>
-									<label class="form-label">주소</label>
-									<div class="form-group">
-										<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="c_zipcode" id="c_zipcode" type="text">
-										<button type="button" class="btn btn-default" onclick="execPostCode();">
-											<i class="fa fa-search"></i> 우편번호 찾기
-										</button>
-									</div>
-									<div class="form-group">
-										<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="c_road" id="c_road" type="text" />
-									</div>
-									<div class="form-group">
-										<input class="form-control" placeholder="상세주소" name="c_detail" id="c_detail" type="text" />
-									</div>
-									<div class="form-group">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="cusinfochk" /> <span class="custom-control-label">내 정보 불러오기</span>
-										</label>
-									</div>
-									<div class="form-footer">
-										<a href="./inscalmoney" type="button" class="btn btn-success" id="prev" style="width: 80px; margin-right: 127px;">이전</a>
-										<button type="button" class="btn btn-success" id="next" style="width: 80px;" onclick="cuschk();">다음</button>
+
+							<div class="row row-cards">
+								<div class="col-md-6">
+									<div class="card" style="width: 600px;">
+										<div class="card-status bg-green"></div>
+										<div class="card-header">
+											<img src="demo/photos/petlogo.png" style="width: 300px; height: 70%;">
+										</div>
+										<div class="card-body">
+											<div class="text-muted">반려견 정보</div>
+											<div style="margin-left: 10px; margin-top: 10px;">
+												<div style="margin-bottom: 5px;">
+													이름<span id="p_name" style="margin-left: 20px;"></span>
+												</div>
+												<div style="margin-bottom: 5px;">
+													견종<span id="p_type" style="margin-left: 20px;"></span>
+												</div>
+												<div style="margin-bottom: 5px;">
+													생일<span id="p_birth" style="margin-left: 20px;"></span>
+												</div>
+											</div>
+											<hr>
+											<div class="text-muted">보험 정보</div>
+											<div style="margin-left: 10px; margin-top: 10px;">
+												<div style="margin-bottom: 5px;">
+													<span class="text-muted">자기부담금</span><span id="i_pay" style="margin-left: 26px;"></span>만원
+												</div>
+												<div style="margin-bottom: 5px;">
+													<span class="text-muted">보상비율</span><span id="i_percent" style="margin-left: 44px;"></span>%
+												</div>
+												<div style="margin-bottom: 5px;">
+													<span class="text-muted">계약일</span><span id="i_startdate" style="margin-left: 60px;"></span>
+												</div>
+												<div style="margin-bottom: 5px;">
+													<span class="text-muted">납입 방법</span><span id="i_paytype" style="margin-left: 40px;"></span>
+												</div>
+												<div style="margin-bottom: 5px;">
+													<span class="text-muted">특별 약관</span><span id="i_special" style="margin-left: 40px;"></span>
+												</div>
+												<div style="margin-bottom: 10px;">
+													<span class="text-muted">총 납입 금액</span><span id="i_total" style="margin-left: 22px;"></span>원
+												</div>
+
+											</div>
+										</div>
 									</div>
 								</div>
-							</form>
+							</div>
 
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -251,58 +257,58 @@
 		</footer>
 	</div>
 	<script>
-                
-                $("#cusinfochk").on("click",function (){
-                        if ($("#cusinfochk:checked").length > 0) {
-                                var json = {
-                                                'c_id' : '${sessionScope.user.c_id}'
-                                        };
-                                        console.log(json);
-                                        $.get("selectcusinfo", json, function(data) {
-                                                console.log(data);
-                                                var cusobj = eval("(" + data + ")");
-                                                console.log(cusobj);
-                                                $("#c_name").val(cusobj[0].c_name);
-                                                $("#c_pid").val(cusobj[0].c_pid);
-                                                $("#c_zipcode").val(cusobj[0].c_zipcode);
-                                                $("#c_road").val(cusobj[0].c_road);
-                                                $("#c_detail").val(cusobj[0].c_detail);
-                        });
+                $(function() {
+                        $("#p_name").text(sessionStorage.getItem("p_name"));
+                        var p_type = sessionStorage.getItem("p_type");
+                        switch(p_type){
+                        case "poodle":
+                                $("#p_type").text("푸들");
+                                break;
+                        case "maltese":
+                                $("#p_type").text("말티즈");
+                                break;
+                        case "sichu":
+                                $("#p_type").text("시츄");
+                                break;
                         }
-                        else {
-                                $("#c_name").val("");
-                                $("#c_pid").val("");
-                                $("#c_zipcode").val("");
-                                $("#c_road").val("");
-                                $("#c_detail").val("");
-                        }
+                        $("#p_birth").text(sessionStorage.getItem("p_birth"));
+                        
+                        var json = {'c_pid' : sessionStorage.getItem("c_pid")        
+                        };
+                        console.log(json);
+                        $.get("selectinsinfo", json, function(data) {
+                                        console.log(data);
+                                        var insobj = eval("(" + data + ")");
+                                        console.log(insobj);
+                                        $("#i_pay").text(insobj[0].i_pay);
+                                        $("#i_percent").text(insobj[0].i_percent);
+                                        $("#i_paytype").text(insobj[0].i_paytype);
+                                        $("#i_total").text(insobj[0].i_total);
+                                        $("#i_startdate").text(insobj[0].i_startdate);
+                                        var s = "";
+                                        if(insobj[0].i_sp1 == "1"){
+                                                s += "구강질환 "
+                                        }
+                                        if(insobj[0].i_sp2 == "1"){
+                                                s += "탈구 "
+                                        }
+                                        if(insobj[0].i_sp3 == "1"){
+                                                s += "피부질환 "
+                                        }
+                                        if(insobj[0].i_sp4 == "1"){
+                                                s += "장례지원비 "
+                                        }
+                                        if(insobj[0].i_sp5 == "1"){
+                                                s += "배상책임 "
+                                        }
+                                        
+                                        $("#i_special").text(s);
+                });
+                        
+                        
                 })
 
-                function cuschk() {
-                        c_name = $("#c_name").val();
-                        c_pid = $("#c_pid").val();
-                        c_zipcode = $("#c_zipcode").val();
-                        c_road = $("#c_road").val();
-                        c_detail = $("#c_detail").val();
-
-                        sessionStorage.setItem('c_name', c_name);
-                        sessionStorage.setItem('c_pid', c_pid);
-                        sessionStorage.setItem('c_zipcode', c_zipcode);
-                        sessionStorage.setItem('c_road', c_road);
-                        sessionStorage.setItem('c_detail', c_detail);
-                        
-                        if (!c_name || !c_pid || !c_zipcode || !c_road) {
-                                alert("고객 정보를 입력하세요.")
-                                
-                        }
-                        else{
-                                $('#cusform').attr({
-                                        'action' : 'insobligation'
-                                }).submit();
-                        }
-                }
                 
-        
         </script>
 </body>
 </html>

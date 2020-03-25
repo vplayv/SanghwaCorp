@@ -117,7 +117,7 @@
 										<b>자기 부담금 </b> <span style="font-size: 0.8em; position: relative; top: 3px;"> (최소 1만원, 최대 3만원) </span>
 									</div>
 									<div class="form-group" style="padding-top: 2px;">
-										<select id="cus_money" class="form-control custom-select selectized" style="width:250px">
+										<select id="cus_money" class="form-control custom-select selectized" style="width: 250px">
 											<option value="1man">1만원</option>
 											<option value="2man">2만원</option>
 											<option value="3man" selected="selected">3만원</option>
@@ -183,7 +183,19 @@
 	</div>
 	<script>
 		$(function() {
-			$("#p_type").text(sessionStorage.getItem("pettype"));
+			var p_type = sessionStorage.getItem("pettype");
+			switch (p_type) {
+			case "poodle":
+				$("#p_type").text("푸들");
+				break;
+			case "maltese":
+				$("#p_type").text("말티즈");
+				break;
+			case "sichu":
+				$("#p_type").text("시츄");
+				break;
+			}
+
 			$("#p_age").text(sessionStorage.getItem("petbirth"));
 			$("#p_name").text(sessionStorage.getItem("petname"));
 		})
