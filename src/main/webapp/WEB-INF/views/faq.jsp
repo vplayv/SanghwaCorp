@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
@@ -74,79 +73,7 @@
 }
 </style>
 
-<script>
-function fn_search(){
-        
-        if($("#search_data").val() != ""){
-                var url = "${pageContext.request.contextPath}/faq";
-                url = url + "?page=" + 1;
-                url = url + "&range=" + 1;
-                url = url + "&search=" + $("#search_data").val();
-                location.href = url;
-        }else{
-                alert("검색어를 입력해주세요.")
-        }
-}
-function fn_prev(page, range, rangeSize) {
-                var page = ((range - 2) * rangeSize) + 1;
-                var range = range - 1;
-                var url = "${pageContext.request.contextPath}/faq";
-                url = url + "?page=" + page;
-                url = url + "&range=" + range;
-               
-                url = url + "&search=" + $("#search_data").val();
-                
-                location.href = url;
 
-        }
-
-
-  //페이지 번호 클릭
-
-        function fn_pagination(page, range) {
-
-                var url = "${pageContext.request.contextPath}/faq";
-
-                url = url + "?page=" + page;
-                
-                url = url + "&range=" + range;
-
-                url = url + "&search=" + $("#search_data").val();
-
-                location.href = url;        
-
-        }
-          
-        function main() {
-
-                var url = "${pageContext.request.contextPath}/faq";
-
-                location.href = url;        
-
-        }
-
-
-        //다음 버튼 이벤트
-
-        function fn_next(page, range, rangeSize) {
-
-                var page = parseInt((range * rangeSize)) + 1;
-
-                var range = parseInt(range) + 1;
-
-                var url = "${pageContext.request.contextPath}/faq";
-
-                url = url + "?page=" + page;
-
-                url = url + "&range=" + range;
-                
-                url = url + "&search=" + $("#search_data").val();
-
-                location.href = url;
-
-        }
-
-</script>
 
 
 </head>
@@ -190,36 +117,36 @@ function fn_prev(page, range, rangeSize) {
 
 					<!-- pagination{s} -->
 					<div class="text-center" style="text-align: center">
-					<div id="paginationBox" style="text-align: center">
+						<div id="paginationBox" style="text-align: center">
 
-						<ul class="pagination">
+							<ul class="pagination">
 
-							<c:if test="${pagination.prev}">
+								<c:if test="${pagination.prev}">
 
-								<li class="page-item">
-									<%--<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a> --%> <a class="page-link" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
-								</li>
+									<li class="page-item">
+										<%--<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a> --%> <a class="page-link" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
+									</li>
 
-							</c:if>
+								</c:if>
 
-							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+								<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
 
-								<%--<c:forEach begin="1" end="5" var="idx"> --%>
+									<%--<c:forEach begin="1" end="5" var="idx"> --%>
 
-								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> <%-- <a class="page-link" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> --%></li>
+									<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> <%-- <a class="page-link" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> --%></li>
 
-							</c:forEach>
+								</c:forEach>
 
-							<c:if test="${pagination.next}">
+								<c:if test="${pagination.next}">
 
-								<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a> <%-- <a class="page-link" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a> --%></li>
+									<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a> <%-- <a class="page-link" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a> --%></li>
 
-							</c:if>
+								</c:if>
 
-						</ul>
+							</ul>
 
 
-					</div>
+						</div>
 					</div>
 					<div style="text-align: center">
 						<input type="text" id="search_data" placeholder="검색어 입력..." value="${search}">
@@ -233,5 +160,54 @@ function fn_prev(page, range, rangeSize) {
 		</div>
 		<%@ include file="footer.jsp"%>
 	</div>
+	<script>
+		function fn_search() {
+			if ($("#search_data").val() != "") {
+				var url = "${pageContext.request.contextPath}/faq";
+				url = url + "?page=" + 1;
+				url = url + "&range=" + 1;
+				url = url + "&search=" + $("#search_data").val();
+				location.href = url;
+			} else {
+				alert("검색어를 입력해주세요.")
+			}
+		}
+		function fn_prev(page, range, rangeSize) {
+			var page = ((range - 2) * rangeSize) + 1;
+			var range = range - 1;
+			var url = "${pageContext.request.contextPath}/faq";
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+			url = url + "&search=" + $("#search_data").val();
+			location.href = url;
+		}
+
+		//페이지 번호 클릭
+
+		function fn_pagination(page, range) {
+			var url = "${pageContext.request.contextPath}/faq";
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+			url = url + "&search=" + $("#search_data").val();
+			location.href = url;
+		}
+
+		function main() {
+			var url = "${pageContext.request.contextPath}/faq";
+			location.href = url;
+		}
+
+		//다음 버튼 이벤트
+
+		function fn_next(page, range, rangeSize) {
+			var page = parseInt((range * rangeSize)) + 1;
+			var range = parseInt(range) + 1;
+			var url = "${pageContext.request.contextPath}/faq";
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+			url = url + "&search=" + $("#search_data").val();
+			location.href = url;
+		}
+	</script>
 </body>
 </html>

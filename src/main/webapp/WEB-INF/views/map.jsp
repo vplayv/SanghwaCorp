@@ -41,7 +41,7 @@
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
 <!-- map -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69cbade15ce3ca1fa22e0bbc7e7731a9&libraries=LIBRARY"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa7e2456052b8ea5f8a43166c68bca1&libraries=LIBRARY"></script>
 <script>
 	var positions = [];
 	var markers = [];
