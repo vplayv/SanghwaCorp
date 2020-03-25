@@ -52,42 +52,50 @@
 					<div class="text-center mb-6">
 						<img src="demo/photos/petlogo.png" style="width: 300px;">
 					</div>
-					<div class="row">
-						<form id="calcform" action="inscalmoney" method="POST">
-							<div class="card card-aside" style="width: 800px; margin-left: 180px;">
-								<img src="demo/photos/calcimg2.jpg" class="card-aside-column" style="margin-left: 70px;">
-								<div class="card-body d-flex flex-column" style="margin-left: 80px;">
-									<div class="card-title">반려견 정보 입력하기</div>
-									<div class="form-group">
-										<label class="form-label">이름</label>
-										<input type="text" class="form-control" name="p_name" id="p_name" style="width: 250px;">
+					<div class="row row-cards">
+						<div class="col-lg-1"></div>
+						<div class="col-lg-10">
+							<form id="calcform" action="inscalmoney" method="POST">
+								<div class="card card-aside" style="margin-left: 0px;">
+									<div class="col-lg-7 text-center">
+										<img src="demo/photos/dbins_petmain.PNG" class="rounded" style="margin-left: 0%; margin-top: 10%;">
 									</div>
-									<div class="form-group">
-										<label class="form-label">견종</label>
-										<select name="petinput" id="petinput" class="form-control custom-select" style="width: 250px;">
-											<option value="말티즈">말티즈</option>
-											<option value="푸들">푸들</option>
-											<option value="시츄">시츄</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label class="form-label">생일</label>
-										<input type="date" class="form-control custom-select" name="birthinput" id="birthinput" style="width: 250px;">
-									</div>
-									<div class="form-group">
-										<label class="form-label" style="color: gray;">회원이라면</label>
-										<select name="callpet" id="callpet" class="form-control custom-select" style="width: 250px;">
-											<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-											<option value="감자">감자</option>
-											<option value="쵸비">쵸비</option>
-										</select>
-									</div>
-									<div class="form-footer">
-										<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();" style="width: 250px;">보험료 확인</button>
+									<div class="col-lg-5 ">
+										<div class="card-body d-flex flex-column" style="margin-left: 0%;">
+											<div class="card-title">반려견 정보 입력하기</div>
+											<div class="form-group">
+												<label class="form-label">이름</label>
+												<input type="text" class="form-control" name="p_name" id="p_name">
+											</div>
+											<div class="form-group">
+												<label class="form-label">견종</label>
+												<select name="petinput" id="petinput" class="form-control custom-select">
+													<option value="말티즈">말티즈</option>
+													<option value="푸들">푸들</option>
+													<option value="시츄">시츄</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="form-label">생일</label>
+												<input type="date" class="form-control custom-select" name="birthinput" id="birthinput">
+											</div>
+											<div class="form-group">
+												<label class="form-label" style="color: gray;">회원이라면</label>
+												<select name="callpet" id="callpet" class="form-control custom-select">
+													<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
+													<option value="감자">감자</option>
+													<option value="쵸비">쵸비</option>
+												</select>
+											</div>
+											<div class="form-footer">
+												<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();">보험료 확인</button>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</form>
+							</form>
+						</div>
+						<div class="col-lg-1"></div>
 					</div>
 				</div>
 			</div>

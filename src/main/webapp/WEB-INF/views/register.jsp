@@ -45,25 +45,37 @@
 <!-- Daum map api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./assets/js/postcode.v2.js"></script>
-</script>
+<style>
+.fullscreen_bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-image: url( "./demo/photos/dbpet_bg.jpg" );
+	background-repeat: repeat;
+	background-color: #ffffff;
+	opacity: 0.5 !important;
+	filter: alpha(opacity = 50);
+	z-index: -1;
+}
+</style>
 </head>
 <body class="">
+	<div class="fullscreen_bg"></div>
 	<div class="page">
 		<div class="page-single">
 			<div class="container">
-				<div class="row">
-					<div class="col col-login mx-auto">
-						<div class="text-center mb-6">
-							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
-						</div>
-					</div>
-				</div>
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8">
 						<form:form id="registerform" name="registerform" class="card" modelAttribute="true" action="registerProcess" method="post" autocomplete="off">
 							<div class="card-header">
 								<div class="card-status bg-green"></div>
-								<h3 class="card-title">계정 생성</h3>
+								<div class="col-lg-12 text-center">
+									<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
+								</div>
 							</div>
 							<div class="card-body">
 								<div class="form-group">
@@ -134,17 +146,14 @@
 									<button type="button" id="register_btn" class="btn btn-success btn-block">회원 가입</button>
 								</div>
 							</div>
+							<div class="card-footer text-muted text-center">
+								이미 계정이 있습니까?
+								<a href="./login">로그인</a>
+							</div>
 						</form:form>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col col-login mx-auto">
-						<div class="text-center text-muted">
-							이미 계정이 있습니까?
-							<a href="./login">로그인</a>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>

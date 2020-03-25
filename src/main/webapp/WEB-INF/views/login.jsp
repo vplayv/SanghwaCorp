@@ -42,20 +42,37 @@
 <script src="./assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="./assets/plugins/datatables/plugin.js"></script>
+<style>
+.fullscreen_bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-image: url( "./demo/photos/dbpet_bg.jpg" );
+	background-repeat: repeat;
+	background-color: #ffffff;
+	opacity: 0.5 !important;
+	filter: alpha(opacity = 50);
+	z-index: -1;
+}
+</style>
 </head>
 <body class="">
+	<div class="fullscreen_bg"></div>
 	<div class="page">
 		<div class="page-single">
 			<div class="container">
 				<div class="row">
 					<div class="col col-login mx-auto">
-						<div class="text-center mb-6">
-							<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
-						</div>
 						<form:form id="loginform" name="loginform" class="card" action="LoginProcess" method="post" autocomplete="on">
 							<div class="card-header">
 								<div class="card-status bg-green"></div>
-								<h3 class="card-title">로그인</h3>
+								<div class="col-lg-12 text-center">
+									<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
+								</div>
 							</div>
 							<div class="card-body p-6">
 								<div class="form-group">
@@ -70,11 +87,11 @@
 									<button type="button" id="login_btn" class="btn btn-success btn-block">로그인</button>
 								</div>
 							</div>
+							<div class="card-footer text-muted text-center">
+								혹시 처음이신가요?
+								<a href="./register">회원가입</a>
+							</div>
 						</form:form>
-						<div class="text-center text-muted">
-							혹시 처음이신가요?
-							<a href="./register">회원가입</a>
-						</div>
 					</div>
 				</div>
 			</div>
