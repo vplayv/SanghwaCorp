@@ -27,7 +27,7 @@
 						<ul class="list-unstyled mb-0">
 							<li><strong>프로필</strong></li>
 							<li><a href="profile">사용자 설정</a></li>
-							<li><a href="#">반려견 설정</a></li>
+							<li><a href="petinfoshow">반려견 설정</a></li>
 						</ul>
 					</div>
 				</div>

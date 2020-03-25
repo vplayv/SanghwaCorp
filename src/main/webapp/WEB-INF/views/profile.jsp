@@ -175,7 +175,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-						로그인 페이지로 넘기기(미구현 상태)
+							<meta http-equiv='refresh' content='0;url=login'>
 						</c:otherwise>
 					</c:choose>
 				</div>

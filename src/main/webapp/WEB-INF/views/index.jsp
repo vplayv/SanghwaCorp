@@ -42,12 +42,30 @@
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
 </head>
+<style>
+.fullscreen_bg2 {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-image: url( "./demo/photos/dbpet_bg3.jpg" );
+	background-repeat: repeat;
+	background-color: #ffffff;
+	opacity: 0.1 !important;
+	filter: alpha(opacity = 20);
+	z-index: -1;
+}
+</style>
 <body class="">
 	<div class="page">
 		<div class="flex-fill">
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
+			<div class="fullscreen_bg2"></div>
 				<div class="container">
 					<div class="text-center mb-6">
 						<img src="demo/photos/petlogo.png" style="width: 300px;">

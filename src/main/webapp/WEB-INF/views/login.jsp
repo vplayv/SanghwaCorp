@@ -71,7 +71,9 @@
 							<div class="card-header">
 								<div class="card-status bg-green"></div>
 								<div class="col-lg-12 text-center">
-									<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
+									<a class="header-brand" href="./index">
+										<img src="demo/brand/dbpetlogo.png" class="img-responsive center-block" alt="dbpet logo" style="margin: 0 auto;">
+									</a>
 								</div>
 							</div>
 							<div class="card-body p-6">
@@ -127,3 +129,4 @@
 	</script>
 </body>
 </html>
+

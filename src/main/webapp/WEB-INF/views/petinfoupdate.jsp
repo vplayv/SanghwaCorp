@@ -21,6 +21,7 @@
 <title>index</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+<script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
 <script src="assets/js/require.min.js"></script>
 <script>
 	requirejs.config({
@@ -56,11 +57,11 @@
 
 								<div class="form-group">
 									<label class="form-label">사진 업로드</label>
-
-									<input type="file" name="p_photo" id="p_photo" accept=".jpg,.jpeg,.png,.gif">
 									<div id="holder">
 										<img src="${a.p_photo}" style="width: 150px; height: 150px">
 									</div>
+									<input type="file" name="p_photo" id="p_photo" accept=".jpg,.jpeg,.png,.gif">
+
 
 								</div>
 
@@ -71,12 +72,12 @@
 
 								<div class="form-group">
 									<label class="form-label">견종</label>
-									<input type="text" name="p_type" class="form-control" value="${a.p_type }" readonly />
+									<input type="text" name="p_type" class="form-control" value="${a.p_type }">
 								</div>
 
 								<div class="form-group">
 									<label class="form-label">생일</label>
-									<input type="date" name="p_birth" class="form-control" value="${a.p_birth}" readonly />
+									<input type="date" name="p_birth" class="form-control" value="${a.p_birth}">
 								</div>
 
 								<div class="form-group">
@@ -119,6 +120,7 @@
 
 								</div>
 							</div>
+							<input type="hidden" name="p_idx" value="${a.p_idx}">
 						</form>
 					</div>
 					<script>

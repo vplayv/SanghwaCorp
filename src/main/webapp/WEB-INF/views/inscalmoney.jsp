@@ -49,22 +49,24 @@
 			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
 				<div class="container" style="padding-top: 30px;">
-					<!-- 보험명 -->
-					<div class="row">
-						<div class="alert alert-primary" style="margin-left: 13px;">
-							<div class="card-status card-status-left bg-blue"></div>
-							<div class="card-body" style="width: 900px; padding-top: 5px; padding-bottom: 5px;">
-								<span style="font-size: 20px;">아이(I)러브(LOVE)펫보험1904</span>
-								<%-- (<span>${petinput}, ${birthinput}</span>세) --%>
-								<%-- <span>${sessionScope.petinput}, ${sessionScope.birthinput}세</span> --%>
-								<span id="p_name"></span>, <span id="p_age"></span>세, <span id="p_type"></span>
+					<div class="card">
+						<!-- 보험명 -->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-primary" style="margin-left: 0px;">
+									<div class="card-status card-status-left bg-blue"></div>
+									<div class="card-body" style="padding-top: 5px; padding-bottom: 5px;">
+										<span style="font-size: 20px;">아이(I)러브(LOVE)펫보험1904</span>
+										<%-- (<span>${petinput}, ${birthinput}</span>세) --%>
+										<%-- <span>${sessionScope.petinput}, ${sessionScope.birthinput}세</span> --%>
+										<span id="p_name"></span>, <span id="p_age"></span>세, <span id="p_type"></span>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<!-- 보험료 테이블 -->
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="card">
+						<!-- 보험료 테이블 -->
+						<div class="row">
+							<div class="col-md-8 col-lg-8">
 								<div class="table-responsive">
 									<table id="calctable" class="table card-table table-striped table-vcenter" style="height: 475px;">
 										<thead>
@@ -109,74 +111,69 @@
 									</table>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6" style="padding-left: 30px;">
-							<form>
-								<div class="row">
-									<b>자기 부담금 </b> <span style="font-size: 0.8em; position: relative; top: 3px;"> (최소 1만원, 최대 3만원) </span>
-								</div>
-								<div class="row" style="padding-top: 2px;">
-									<select id="cus_money">
-										<option value="1man">1만원</option>
-										<option value="2man">2만원</option>
-										<option value="3man" selected="selected">3만원</option>
-									</select>
-								</div>
-								<br>
-								<div class="row">
-									<b>보상 비율</b>
-								</div>
-								<div class="row">
-									<button type="button" id="50per" class="btn btn-secondary" style="width: 80px; margin-right: 10px;" onclick="perfn1();">50%</button>
-									<button type="button" id="70per" class="btn btn-success" style="width: 80px; margin-right: 10px;" onclick="perfn2();">70%</button>
-
-								</div>
-								<br>
-								<div class="row">
-									<b>납부 방법</b>
-								</div>
-								<div class="row">
-									<button type="button" id="monbtn" class="btn btn-success" style="width: 80px; margin-right: 10px;" onclick="monfn();">월납</button>
-									<button type="button" id="yearbtn" class="btn btn-secondary" style="width: 80px; margin-right: 10px;" onclick="yearfn();">연납</button>
-								</div>
-								<br>
-								<div class="row">
-									<b>특별약관</b>
-								</div>
-								<div class="row">
-									<label class="colorinput">
-										<input name="special" id="gugang" type="checkbox" value="gugang" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> <span>구강&nbsp;</span>
-									</label>
-									<label class="colorinput">
-										<input name="special" id="talgu" type="checkbox" value="talgu" id="talgu" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 탈구&nbsp;
-									</label>
-									<label class="colorinput">
-										<input name="special" id="skin" type="checkbox" value="skin" id="skin" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 피부&nbsp;
-									</label>
-									<label class="colorinput">
-										<input name="special" id="funeral" type="checkbox" value="funeral" id="funeral" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 장례&nbsp;
-									</label>
-									<label class="colorinput">
-										<input name="special" id="baesang" type="checkbox" value="baesang" id="baesang" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 배상&nbsp;
-									</label>
-								</div>
-								<br>
-								<div class="row" style="width: 250px; height: 100px; background-color: MediumSeaGreen;">
-									<div style="width: 250px; height: 35px; padding: 10px; color: white;">다이렉트 보험료(10% 할인)</div>
-									<div style="width: 250px; padding-right: 10px; margin-top: 10px; color: white; font-size: 12px; text-align: right;">
-										할인 전 <span id="totalbefore" style="text-decoration: line-through;">30000</span> 원
+							<div class="col-md-4 col-lg-4" style="padding-left: 0%;">
+								<form>
+									<div class="form-group">
+										<b>자기 부담금 </b> <span style="font-size: 0.8em; position: relative; top: 3px;"> (최소 1만원, 최대 3만원) </span>
 									</div>
-									<div style="width: 250px; padding-right: 10px; color: white; text-align: right;">
-
-										<span style="font-size: 20px;" id="typeshow">월</span> <span id="total" style="font-size: 18px;">27000</span> 원
+									<div class="form-group" style="padding-top: 2px;">
+										<select id="cus_money" class="form-control custom-select selectized" style="width:250px">
+											<option value="1man">1만원</option>
+											<option value="2man">2만원</option>
+											<option value="3man" selected="selected">3만원</option>
+										</select>
 									</div>
-								</div>
-								<br>
-								<div class="row">
-									<button type="button" id="monbtn" class="btn btn-cyan" style="width: 100px; margin-right: 15px;" onclick="changecalc();">보험료 계산</button>
-									<a href="./inscusinfo" type="button" class="btn btn-blue">보험 가입하러 가기</a>
-								</div>
-							</form>
+									<div class="form-group">
+										<b>보상 비율</b>
+									</div>
+									<div class="form-group">
+										<button type="button" id="50per" class="btn btn-secondary" style="width: 80px; margin-right: 10px;" onclick="perfn1();">50%</button>
+										<button type="button" id="70per" class="btn btn-success" style="width: 80px; margin-right: 10px;" onclick="perfn2();">70%</button>
+									</div>
+									<div class="form-group">
+										<b>납부 방법</b>
+									</div>
+									<div class="form-group">
+										<button type="button" id="monbtn" class="btn btn-success" style="width: 80px; margin-right: 10px;" onclick="monfn();">월납</button>
+										<button type="button" id="yearbtn" class="btn btn-secondary" style="width: 80px; margin-right: 10px;" onclick="yearfn();">연납</button>
+									</div>
+									<div class="form-group">
+										<b>특별약관</b>
+									</div>
+									<div class="form-group">
+
+										<label class="colorinput">
+											<input name="special" id="gugang" type="checkbox" value="gugang" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> <span>구강&nbsp;</span>
+										</label>
+										<label class="colorinput">
+											<input name="special" id="talgu" type="checkbox" value="talgu" id="talgu" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 탈구&nbsp;
+										</label>
+										<label class="colorinput">
+											<input name="special" id="skin" type="checkbox" value="skin" id="skin" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 피부&nbsp;
+										</label>
+										<label class="colorinput">
+											<input name="special" id="funeral" type="checkbox" value="funeral" id="funeral" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 장례&nbsp;
+										</label>
+										<label class="colorinput">
+											<input name="special" id="baesang" type="checkbox" value="baesang" id="baesang" class="colorinput-input" /> <span class="colorinput-color bg-green" style="width: 25px; height: 25px;"></span> 배상&nbsp;
+										</label>
+									</div>
+									<div class="form-group" style="width: 250px; height: 100px; background-color: MediumSeaGreen;">
+										<div style="width: 250px; height: 35px; padding: 10px; color: white;">다이렉트 보험료(10% 할인)</div>
+										<div style="width: 250px; padding-right: 10px; margin-top: 10px; color: white; font-size: 12px; text-align: right;">
+											할인 전 <span id="totalbefore" style="text-decoration: line-through;">30000</span> 원
+										</div>
+										<div style="width: 250px; padding-right: 10px; color: white; text-align: right;">
+
+											<span style="font-size: 20px;" id="typeshow">월</span> <span id="total" style="font-size: 18px;">27000</span> 원
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="button" id="monbtn" class="btn btn-cyan" style="width: 100px; margin-right: 15px;" onclick="changecalc();">보험료 계산</button>
+										<a href="./inscusinfo" type="button" class="btn btn-blue">보험 가입하러 가기</a>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

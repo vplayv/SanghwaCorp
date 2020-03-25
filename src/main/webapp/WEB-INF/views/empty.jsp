@@ -58,6 +58,7 @@
 					</c:when>
 					<c:otherwise>
 						hello world
+						<!-- <meta http-equiv='refresh' content='0;url=login'> -->
 				</c:otherwise>
 				</c:choose>
 			</div>

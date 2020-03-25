@@ -1,6 +1,10 @@
 package com.dbinc.sanghwa.petinfo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.dbinc.sanghwa.petcustomer.PetCustomerVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,15 +46,21 @@ public class PetInfoController {
 	public String petinfoinsertsave(@RequestParam("p_photo") MultipartFile p_photo,
 			@RequestParam("p_name") String p_name, @RequestParam("p_type") String p_type,
 			@RequestParam("p_birth") String p_birth, @RequestParam("p_gender") String p_gender,
-			@RequestParam("p_weight") int p_weight, @RequestParam("p_status") String p_status, Model model) {
+			@RequestParam("p_weight") int p_weight, @RequestParam("p_status") String p_status, Model model,
+			HttpSession httpsession) {
 		try {
-			// 한글 안깨지게..
-			String s = new String(p_photo.getOriginalFilename().getBytes("8859_1"), "utf-8");
-			InputStream pfile = p_photo.getInputStream();
-			// db connection 객체 얻어오기
+			String s = "";
+			InputStream pfile;
 			Connection conn = dataSource.getConnection();
-			String sql = "insert into pet values(pet_sequence.nextVal,?,?,?,?,to_date(?, 'yyyy-mm-dd'),?,?,?,?)";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			PreparedStatement pstmt;
+			PetCustomerVO user = (PetCustomerVO) httpsession.getAttribute("user");
+			log.info(user.toString());
+			String sql = "";
+			sql = "insert into pet values(pet_sequence.nextVal,?,?,?,?,to_date(?, 'yyyy-mm-dd'),?,?,?,?)";
+			s = new String(p_photo.getOriginalFilename().getBytes("8859_1"), "utf-8");
+			pfile = p_photo.getInputStream();
+			// db connection 객체 얻어오기
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, s);
 			pstmt.setBlob(2, pfile);
 			pstmt.setString(3, p_name);
@@ -57,14 +70,13 @@ public class PetInfoController {
 			pstmt.setInt(7, p_weight);
 			pstmt.setString(8, p_status);
 			// c_id 추가
-			pstmt.setString(9, "test");
-			/* String p_id = (String) session.getAttribute("c_id"); */
-			/* pstmt.setString(7, p_id); */
+			pstmt.setString(9, user.getC_id());
 
 			pstmt.execute();
 			conn.close();
 			model.addAttribute("insresult", "반려견 정보를 추가했습니다.");
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("insresult", "반려견 정보 추가를 실패했습니다. " + e.getMessage());
 		}
 		return "petinfoinsertsaveresult";
@@ -98,6 +110,7 @@ public class PetInfoController {
 				arr.add(new PetInfoModel(p_idx1, sImg, p_name, p_type, p_birth, p_gender, p_weight, p_status));
 			}
 			rs.close();
+			conn.close();
 			model.addAttribute("arr", arr);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block e.printStackTrace();
@@ -106,31 +119,39 @@ public class PetInfoController {
 	}
 
 	@RequestMapping(value = "/petinfoupdatesave", method = RequestMethod.POST)
-	public String petinfoupdatesave(@RequestParam("p_idx") int p_idx, @RequestParam("p_photo") MultipartFile p_photo,
+	public String petinfoupdatesave(@RequestParam("p_photo") MultipartFile p_photo, @RequestParam("p_idx") int p_idx,
 			@RequestParam("p_name") String p_name, @RequestParam("p_type") String p_type,
 			@RequestParam("p_birth") String p_birth, @RequestParam("p_gender") String p_gender,
 			@RequestParam("p_weight") int p_weight, @RequestParam("p_status") String p_status, Model model) {
 		try {
-			// 한글 안깨지게..
 			String s = new String(p_photo.getOriginalFilename().getBytes("8859_1"), "utf-8");
 			InputStream pfile = p_photo.getInputStream();
-			// db connection 객체 얻어오기
 			Connection conn = dataSource.getConnection();
-			String sql = "update pet set p_photoname=?, p_photo=?, p_name=? p_type=?, p_birth = to_date(?, 'yyyy-mm-dd'), p_gender=? p_weight=?, p_status=? where = p_idx"
-					+ p_idx;
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, s);
-			pstmt.setBlob(2, pfile);
-			pstmt.setString(3, p_name);
-			pstmt.setString(4, p_type);
-			pstmt.setString(5, p_birth);
-			pstmt.setString(6, p_gender);
-			pstmt.setInt(7, p_weight);
-			pstmt.setString(8, p_status);
-
-			/* String p_id = (String) session.getAttribute("c_id"); */
-			/* pstmt.setString(7, p_id); */
-
+			PreparedStatement pstmt;
+			String sql = "";
+			if (p_photo.getOriginalFilename() == null || p_photo.getOriginalFilename().length() == 0) {
+				sql = "update pet set p_name=?, p_type=?, p_birth = to_date(?, 'yyyy-mm-dd'), p_gender=?, p_weight=?, p_status=? where p_idx="
+						+ p_idx;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, p_name);
+				pstmt.setString(2, p_type);
+				pstmt.setString(3, p_birth);
+				pstmt.setString(4, p_gender);
+				pstmt.setInt(5, p_weight);
+				pstmt.setString(6, p_status);
+			} else {
+				sql = "update pet set p_photoname=?, p_photo=?, p_name=?, p_type=?, p_birth = to_date(?, 'yyyy-mm-dd'), p_gender=?, p_weight=?, p_status=? where p_idx="
+						+ p_idx;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, s);
+				pstmt.setBlob(2, pfile);
+				pstmt.setString(3, p_name);
+				pstmt.setString(4, p_type);
+				pstmt.setString(5, p_birth);
+				pstmt.setString(6, p_gender);
+				pstmt.setInt(7, p_weight);
+				pstmt.setString(8, p_status);
+			}
 			pstmt.execute();
 			conn.close();
 			model.addAttribute("upresult", "반려견 정보를 수정했습니다.");
@@ -140,19 +161,17 @@ public class PetInfoController {
 		return "petinfoupdatesaveresult";
 	}
 
-	@RequestMapping(value = "/petinfoempty", method = RequestMethod.GET)
-	public String petinfoempty(Locale locale, Model model) {
-		return "petinfoempty";
-	}
-
 	@RequestMapping(value = "/petinfoshow", method = RequestMethod.GET)
-	public String petinfoshow(Locale locale, Model model) {
+	public String petinfoshow(Locale locale, Model model, HttpSession httpsession) {
 		ArrayList<PetInfoModel> arr = new ArrayList<PetInfoModel>();
 		try {
 			Connection conn = dataSource.getConnection();
 			Statement stmt = conn.createStatement();
+			PetCustomerVO user = (PetCustomerVO) httpsession.getAttribute("user");
+			log.info(user.toString());
 			ResultSet rs = stmt.executeQuery(
-					"select p_idx, p_photo, p_name, p_type, p_birth, p_gender, p_weight, p_status from pet");
+					"select p_idx, p_photo, p_name, p_type, p_birth, p_gender, p_weight, p_status from pet where c_id = '"
+							+ user.getC_id() + "'");
 			while (rs.next()) {
 				int p_idx1 = rs.getInt("p_idx");
 				Blob p_photo = rs.getBlob("p_photo");
@@ -162,14 +181,20 @@ public class PetInfoController {
 				String p_gender = rs.getString("p_gender");
 				int p_weight = rs.getInt("p_weight");
 				String p_status = rs.getString("p_status");
+				String sImg = "";
+				if (p_photo != null) {
+					// 픽셀값을 byte array로 변환
+					byte[] bImg = p_photo.getBytes(1, (int) p_photo.length());
+					// 인코딩
+					sImg = "data:img/png;base64," + Base64.getEncoder().encodeToString(bImg);
+				} else {
+					sImg = null;
+				}
 
-				// 픽셀값을 byte array로 변환
-				byte[] bImg = p_photo.getBytes(1, (int) p_photo.length());
-				// 인코딩
-				String sImg = "data:img/png;base64," + Base64.getEncoder().encodeToString(bImg);
 				arr.add(new PetInfoModel(p_idx1, sImg, p_name, p_type, p_birth, p_gender, p_weight, p_status));
 			}
 			rs.close();
+			conn.close();
 			model.addAttribute("arr", arr);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block e.printStackTrace();
