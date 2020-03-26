@@ -22,6 +22,7 @@
 <title>index</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+<script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
 <script src="assets/js/require.min.js"></script>
 <script>
 	requirejs.config({
@@ -48,86 +49,80 @@
 		<div class="flex-fill">
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
-			<c:choose>
-				<c:when test="${not empty sessionScope.user}">
-					<div class="row justify-content-md-center">
-						<c:choose>
-							<c:when test="${fn:length(arr) eq 0}">
-								<div class="col-lg-6">
-									<div class="card" style="text-align: center;">
-										<div class="card-body">
-											<img src="assets/images/browsers/basicdog.jpg" class="card-img-top" style="width: 150px; height: 150px"><br> <br>
-											<h3>반려견 프로필을 등록해주세요!</h3>
-										</div>
-										<div class="card-footer">
-											<button type="button" class="btn btn-success" onclick="location.href='./petinfoinsert' ">반려견 등록</button>
-										</div>
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="a" items="${arr}">
-									<div class="col-lg-3">
+			<div class="container" style="padding-top: 30px;">
+				<c:choose>
+					<c:when test="${not empty sessionScope.user}">
+						<div class="row justify-content-md-center">
+							<c:choose>
+								<c:when test="${fn:length(arr) eq 0}">
+									<div class="col-md-10">
 										<div class="card" style="text-align: center;">
-											<div class="card-header">
-												<h3>반려견 정보</h3>
-											</div>
+											<div class="card-header"></div>
 											<div class="card-body">
-												<c:choose>
-													<c:when test="${empty a.p_photo}">
-														<img src="demo/photos/dbgroup_logo.jpg" class="card-img-top rounded-circle" style="width: 250px; height: 250px">
-													</c:when>
-													<c:otherwise>
-														<img src="${a.p_photo}" class="card-img-top rounded-circle" style="width: 250px; height: 250px">
-													</c:otherwise>
-												</c:choose>
+												<img src="assets/images/browsers/basicdog.jpg" class="card-img-top" style="width: 300px; height: 300px;"><br> <br>
+												<br><h3>반려견 프로필을 등록해주세요!</h3><br>
 											</div>
 											<div class="card-footer">
-												<h3>${a.p_name}</h3>
-												견종:
-												<c:choose>
-													<c:when test="${a.p_type eq 'maltese'}">
-                                                                                말티즈
-                                                                        </c:when>
-													<c:when test="${a.p_type eq 'poodle'}">
-                                                                                푸들
-                                                                        </c:when>
-													<c:when test="${a.p_type eq 'shitzu'}">
-                                                                                시츄
-                                                                        </c:when>
-												</c:choose>
-												<br> 생일: ${a.p_birth}<br> 성별:
-												<c:choose>
-													<c:when test="${a.p_gender eq 'm_option'}">
-                                                                                왕자
-                                                                        </c:when>
-													<c:when test="${a.p_gender eq 'w_option'}">
-                                                                                공주
-                                                                        </c:when>
-												</c:choose>
-												<br> 몸무게: ${a.p_weight}kg<br> 중성화 여부:
-												<c:choose>
-													<c:when test="${a.p_status eq 'y_option'}">
-                                                                                O
-                                                                        </c:when>
-													<c:when test="${a.p_status eq 'n_option'}">
-                                                                                X
-                                                                        </c:when>
-												</c:choose>
-												<br> <br> <br>
-												<button type="button" onclick="location.href='./petinfoupdate?p_idx=${a.p_idx}' " class="btn btn-success">반려견 정보 수정</button>
+												<button type="button" class="btn btn-success" onclick="location.href='./petinfoinsert' ">반려견 등록</button>
 											</div>
 										</div>
 									</div>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<meta http-equiv='refresh' content='0;url=login'>
-				</c:otherwise>
-			</c:choose>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="a" items="${arr}">
+										<div class="col-lg-3">
+											<div class="card" style="text-align: center;">
+												<div class="card-header">
+													<h3>반려견 정보</h3>
+												</div>
+												<div class="card-body">
+													<c:choose>
+														<c:when test="${empty a.p_photo}">
+															<img src="demo/photos/dbgroup_logo.jpg" class="card-img-top rounded-circle" style="width: 250px; height: 250px;">
+														</c:when>
+														<c:otherwise>
+															<img src="${a.p_photo}" class="card-img-top rounded-circle" style="width: 250px; height: 250px;">
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<div class="card-footer">
+													<h3>${a.p_name}</h3>
+													견종:
+													<c:choose>
+														<c:when test="${a.p_type eq 'maltese'}">말티즈</c:when>
+														<c:when test="${a.p_type eq 'poodle'}">푸들</c:when>
+														<c:when test="${a.p_type eq 'shitzu'}">시츄</c:when>
+													</c:choose>
+													<br>생일: ${a.p_birth}<br> 성별:
+													<c:choose>
+														<c:when test="${a.p_gender eq 'm_option'}">왕자</c:when>
+														<c:when test="${a.p_gender eq 'w_option'}">공주</c:when>
+													</c:choose>
+													<br>몸무게: ${a.p_weight}kg<br> 중성화 여부:
+													<c:choose>
+														<c:when test="${a.p_status eq 'y_option'}">O</c:when>
+														<c:when test="${a.p_status eq 'n_option'}">X</c:when>
+													</c:choose>
+													<br> <br> <br>
+													<button type="button" onclick="location.href='./petinfoupdate?p_idx=${a.p_idx}' " class="btn btn-success">반려견 정보 수정</button>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+									<button type="button" class="btn btn-success btn-block" onclick="location.href='./petinfoinsert' ">반려견 추가 등록</button>
+									<br>
+									<br>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<meta http-equiv='refresh' content='0;url=login'>
+					</c:otherwise>
+				</c:choose>
+				<br>
+
+			</div>
 		</div>
 		<%@ include file="footer.jsp"%>
 	</div>

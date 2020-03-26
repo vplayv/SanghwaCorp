@@ -51,43 +51,47 @@
 			<div class="row justify-content-md-center">
 				<c:forEach var="a" items="${arr}">
 					<div class="col-lg-6">
-						<form class="card" action="petinfoupdatesave" method="post" autocomplete="off" enctype="multipart/form-data">
+						<form class="card" name="registerform" id="registerform" action="petinfoupdatesave" method="post" autocomplete="off" enctype="multipart/form-data">
 							<div class="card-body">
-								<div class="card-title center" style="font-weight: bold">반려견 등록</div>
+								<div class="card-title center" style="font-weight: bold">반려견 수정</div>
 
 								<div class="form-group">
 									<label class="form-label">사진 업로드</label>
-									<div id="holder">
-										<img src="${a.p_photo}" style="width: 150px; height: 150px">
+									<input type="file" name="p_photo" id="p_photo" accept=".jpg,.jpeg,.png,.gif"> <br>
+									<div id="holder" style="width: 150px; height: 150px">
+										<c:choose>
+											<c:when test="${empty a.p_photo}"></c:when>
+											<c:otherwise>
+												<img src="${a.p_photo}" style="width: 150px; height: 150px;">
+											</c:otherwise>
+										</c:choose>
 									</div>
-									<input type="file" name="p_photo" id="p_photo" accept=".jpg,.jpeg,.png,.gif">
-
 
 								</div>
 
 								<div class="form-group">
 									<label class="form-label">이름</label>
-									<input type="text" name="p_name" class="form-control" value="${a.p_name}">
+									<input type="text" name="p_name" id="p_name" class="form-control" value="${a.p_name}">
 								</div>
 
 								<div class="form-group">
 									<label class="form-label">견종</label>
-									<input type="text" name="p_type" class="form-control" value="${a.p_type }">
+									<input type="text" name="p_type" id="p_type" class="form-control" value="<c:choose><c:when test="${a.p_type eq 'maltese'}">말티즈</c:when><c:when test="${a.p_type eq 'poodle'}">푸들</c:when><c:when test="${a.p_type eq 'shitzu'}">시츄</c:when></c:choose>">
 								</div>
 
 								<div class="form-group">
 									<label class="form-label">생일</label>
-									<input type="date" name="p_birth" class="form-control" value="${a.p_birth}">
+									<input type="date" name="p_birth" id="p_birth" class="form-control" value="${a.p_birth}">
 								</div>
 
 								<div class="form-group">
 									<div class="form-label">성별</div>
 									<div class="custom-controls-stacked">
 										<label class="custom-control custom-radio custom-control-inline">
-											<input type="radio" class="custom-control-input" name="p_gender" value="m_option"> <span class="custom-control-label">남자</span>
+											<input type="radio" class="custom-control-input" name="p_gender" id="p_gender" value="m_option"> <span class="custom-control-label">남자</span>
 										</label>
 										<label class="custom-control custom-radio custom-control-inline">
-											<input type="radio" class="custom-control-input" name="p_gender" value="w_option"> <span class="custom-control-label">여자</span>
+											<input type="radio" class="custom-control-input" name="p_gender" id="p_gender" value="w_option"> <span class="custom-control-label">여자</span>
 										</label>
 									</div>
 								</div>
@@ -98,7 +102,7 @@
 
 								<div class="form-group">
 									<label class="form-label">몸무게</label>
-									<input type="number" name="p_weight" class="form-control" value="33">
+									<input type="number" name="p_weight" class="form-control" value="${a.p_weight}">
 								</div>
 
 								<div class="form-group">
@@ -114,9 +118,9 @@
 								</div>
 
 								<div class="form-footer">
-									<button type="submit" class="btn btn-success btn-block">반려견 정보 수정</button>
+									<button type="button" class="btn btn-success btn-block" id="register_btn" onclick="checkValue()">반려견 정보 수정</button>
 									<br>
-									<button type="submit" class="btn btn-danger pull-right" onclick="petdelete">반려견 정보 삭제</button>
+									<button type="button" class="btn btn-danger pull-right" onclick="location.href='./petinfodelete?p_idx=${a.p_idx}' ">반려견 정보 삭제</button>
 
 								</div>
 							</div>
@@ -170,6 +174,21 @@
 
 			return false;
 		});
+
+		function checkValue() {
+
+			if ($("#p_name").val() == "") {
+				alert("이름을 입력하세요");
+				return false;
+			}
+
+			if ($("#p_birth").val() == "") {
+				alert("생일을 입력하세요");
+				return false;
+			}
+
+			$("#registerform").submit();
+		}
 	</script>
 </body>
 </html>

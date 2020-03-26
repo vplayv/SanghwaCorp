@@ -23,9 +23,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 <script src="assets/js/require.min.js"></script>
 <script>
-	requirejs.config({
-		baseUrl : '.'
-	});
+        requirejs.config({
+                baseUrl : '.'
+        });
 </script>
 <!-- Dashboard Core -->
 <link href="assets/css/dashboard.css" rel="stylesheet" />
@@ -40,6 +40,7 @@
 <script src="assets/plugins/input-mask/plugin.js"></script>
 <!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
+
 </head>
 <body class="">
 	<div class="page">
@@ -50,7 +51,7 @@
 				<div class="col-lg-auto">
 					<div class="card" style="text-align: center;">
 						<div class="card-header" style="text-align: center;">
-							<h1>${upresult}</h1>
+							<h1>${delresult}</h1>
 						</div>
 						<div class="card-body">
 							<img src="assets/images/browsers/dbpet.JPG">
