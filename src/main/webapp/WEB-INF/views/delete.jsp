@@ -59,7 +59,7 @@
 											<span class="icon mr-3"><i class="fe fe-user"></i></span>회원정보 수정
 										</a>
 
-										<a href="empty" class="list-group-item list-group-item-action active">
+										<a href="empty" class="list-group-item list-group-item-action">
 											<span class="icon mr-3"><i class="fe fe-bar-chart-2"></i></span>기타 정보
 										</a>
 										<a href="delete" class="list-group-item list-group-item-action active">
@@ -75,20 +75,20 @@
 										</div>
 										<div class="card-body">
 											<h2 class="mt-0 mb-4">제7조(회원 탈퇴 및 자격 상실 등)</h2>
-											<h5 id="setup-environment">① 회원은 "ㅇㅇㅇ"에 언제든지 탈퇴를 요청할 수 있으며 "ㅇㅇㅇ"은 즉시 회원탈퇴를 처리합니다.</h5>
+											<h5 id="setup-environment">① 회원은 "건강하개"에 언제든지 탈퇴를 요청할 수 있으며 "건강하개"은 즉시 회원탈퇴를 처리합니다.</h5>
 											<br>
-											<h5 id="setup-environment">② 회원이 다음 각 호의 사유에 해당하는 경우, "ㅇㅇㅇ"은 회원자격을 제한 및 정지시킬 수 있습니다.</h5>
+											<h5 id="setup-environment">② 회원이 다음 각 호의 사유에 해당하는 경우, "건강하개"은 회원자격을 제한 및 정지시킬 수 있습니다.</h5>
 											<ol>
 												<li>가입 신청 시에 허위 내용을 등록한 경우</li>
-												<li>"ㅇㅇㅇ"을 이용하여 구입한 재화·용역 등의 대금, 기타 "ㅇㅇㅇ" 이용에 관련하여 회원이 부담하는 채무를 기일에 지급하지 않는 경우</li>
-												<li>다른 사람의 "ㅇㅇㅇ" 이용을 방해하거나 그 정보를 도용하는 등 전자거래질서를 위협하는 경우</li>
-												<li>"ㅇㅇㅇ"을 이용하여 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하는 경우</li>
+												<li>"건강하개"을 이용하여 구입한 재화·용역 등의 대금, 기타 "건강하개" 이용에 관련하여 회원이 부담하는 채무를 기일에 지급하지 않는 경우</li>
+												<li>다른 사람의 "건강하개" 이용을 방해하거나 그 정보를 도용하는 등 전자거래질서를 위협하는 경우</li>
+												<li>"건강하개"을 이용하여 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하는 경우</li>
 											</ol>
 											<br>
-											<h5 id="setup-environment">③ "ㅇㅇㅇ"이 회원 자격을 제한·정지 시킨 후, 동일한 행위가 2회 이상 반복되거나 30일 이내에 그 사유가 시정되지 아니하는 경우 "ㅇㅇㅇ"은 회원자격을 상실시킬 수 있습니다.</h5>
+											<h5 id="setup-environment">③ "건강하개"이 회원 자격을 제한·정지 시킨 후, 동일한 행위가 2회 이상 반복되거나 30일 이내에 그 사유가 시정되지 아니하는 경우 "건강하개"은 회원자격을 상실시킬 수 있습니다.</h5>
 											<br>
-											<h5 id="setup-environment">④ "ㅇㅇㅇ"이 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 이를 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다.</h5>
-											<br> <img class="card-img-top" src="./demo/photos/sad_cat.png" alt="ㅠㅠ"><br> <br>
+											<h5 id="setup-environment">④ "건강하개"이 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 이를 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다.</h5>
+											<br> <!-- <img class="card-img-top" src="./demo/photos/sad_cat.png" alt="ㅠㅠ"><br> --> <br>
 											<button type="button" id="delete_btn" class="btn btn-square btn-danger btn-block">계정 탈퇴</button>
 										</div>
 									</div>
@@ -106,7 +106,7 @@
 	<%@ include file="footer.jsp"%>
 	<script type="text/javascript">
 		$('#delete_btn').click(function(event) {
-			var result = confirm('정말로 탈퇴하실건가용용?');
+			var result = confirm('정말로 탈퇴하실건가요?');
 			if (result) {
 				var user = {
 					c_id : "${sessionScope.user.c_id}",

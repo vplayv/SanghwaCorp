@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>logout</title>
+<title>건강하개</title>
 </head>
 <body>
 	logout
