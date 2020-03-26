@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ page session="false"%> --%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -17,8 +16,7 @@
 <meta name="MobileOptimized" content="320">
 <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
-<!-- Generated: 2019-04-04 16:55:45 +0200 -->
-<title>index</title>
+<title>건강하개</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 <script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
@@ -57,17 +55,15 @@
 									<div class="card-status card-status-left bg-blue"></div>
 									<div class="card-body" style="padding-top: 5px; padding-bottom: 5px;">
 										<span style="font-size: 20px;">아이(I)러브(LOVE)펫보험1904</span>
-										<%-- (<span>${petinput}, ${birthinput}</span>세) --%>
-										<%-- <span>${sessionScope.petinput}, ${sessionScope.birthinput}세</span> --%>
 										<span id="p_name"></span>, <span id="p_age"></span>세, <span id="p_type"></span>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 보험료 테이블 -->
 						<div class="row">
 							<div class="col-md-8 col-lg-8">
-								<div class="table-responsive">
+								<div class="table-responsive dimmer active">
+									<div id="loader"></div>
 									<table id="calctable" class="table card-table table-striped table-vcenter" style="height: 475px;">
 										<thead>
 											<tr>
@@ -111,6 +107,7 @@
 									</table>
 								</div>
 							</div>
+
 							<div class="col-md-4 col-lg-4" style="padding-left: 0%;">
 								<form>
 									<div class="form-group">
@@ -173,6 +170,168 @@
 										<a href="./inscusinfo" type="button" class="btn btn-blue">보험 가입하러 가기</a>
 									</div>
 								</form>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="card">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-success" style="margin-left: 0px;">
+									<div class="card-status card-status-left bg-green"></div>
+									<div class="card-body" style="padding-top: 5px; padding-bottom: 5px;">
+										<span style="font-size: 20px;">고객님들이 많이 선택한 조건</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6 col-xl-6">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">자기 부담금</h3>
+									</div>
+									<div class="card-body">
+										<div id="chart-pie" style="height: 16rem"></div>
+									</div>
+								</div>
+								<script>
+									var one;
+									var two;
+									var three;
+									$
+											.get(
+													"selectper2",
+													function(data) {
+														console.log(data);
+														var perobj = eval("("
+																+ data + ")");
+
+														one = perobj[0].per2;
+														two = perobj[1].per2;
+														three = perobj[2].per2;
+
+													})
+											.then(
+													function() {
+														require(
+																[ 'c3',
+																		'jquery' ],
+																function(c3, $) {
+																	//$(document).ready(function(){
+																	var chart = c3
+																			.generate({
+																				bindto : '#chart-pie', // id of chart wrapper
+																				data : {
+																					columns : [
+																							// each columns data
+																							[
+																									'data1',
+																									one ],
+																							[
+																									'data2',
+																									two ],
+																							[
+																									'data3',
+																									three ] ],
+																					type : 'donut', // default type of chart
+																					colors : {
+																						'data1' : tabler.colors["blue-darker"],
+																						'data2' : tabler.colors["blue"],
+																						'data3' : tabler.colors["blue-light"],
+																					},
+																					names : {
+																						// name of each serie
+																						'data1' : '1만원',
+																						'data2' : '2만원',
+																						'data3' : '3만원'
+																					}
+																				},
+																				axis : {},
+																				legend : {
+																					show : false, //hide legend
+																				},
+																				padding : {
+																					bottom : 0,
+																					top : 0
+																				},
+																			});
+																	//});
+																});
+
+													});
+								</script>
+							</div>
+
+							<div class="col-lg-6 col-xl-6">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">보상 비율</h3>
+									</div>
+									<div class="card-body">
+										<div id="chart-donut" style="height: 16rem"></div>
+									</div>
+								</div>
+								<script>
+									var five;
+									var seven;
+									$
+											.get(
+													"selectper",
+													function(data) {
+														var perobj = eval("("
+																+ data + ")");
+
+														five = perobj[0].per_per;
+														seven = perobj[1].per_per;
+														console.log(seven);
+													})
+											.then(
+													function() {
+
+														require(
+																[ 'c3',
+																		'jquery' ],
+																function(c3, $) {
+																	//$(document).ready(function(){
+																	var chart = c3
+																			.generate({
+																				bindto : '#chart-donut', // id of chart wrapper
+																				data : {
+																					columns : [
+																							// each columns data
+																							[
+																									'data1',
+																									five ],
+																							[
+																									'data2',
+																									seven ] ],
+																					type : 'donut', // default type of chart
+																					colors : {
+																						'data1' : tabler.colors["green"],
+																						'data2' : tabler.colors["green-light"]
+																					},
+																					names : {
+																						// name of each serie
+																						'data1' : '50%',
+																						'data2' : '70%'
+																					}
+																				},
+																				axis : {},
+																				legend : {
+																					show : false, //hide legend
+																				},
+																				padding : {
+																					bottom : 0,
+																					top : 0
+																				},
+																			});
+																	//});
+																});
+
+													});
+								</script>
 							</div>
 						</div>
 					</div>
@@ -302,23 +461,31 @@
 			totalmoney *= typeval;
 			var totaldiscount = totalmoney * 0.9;
 
-			if (typeval == 12) {
-				$("#typeshow").text("연간");
-				sessionStorage.setItem('typeval', '연납');
-			} else {
-				sessionStorage.setItem('typeval', '월납');
-			}
-
-			$("#join").text(Math.floor(joinmoney));
-			$("#pay1").text(Math.floor(paymoney1));
-			$("#pay2").text(Math.floor(paymoney2));
-			$("#pay3").text(Math.floor(paymoney3));
-			$("#pay4").text(Math.floor(paymoney4));
-			$("#totalbefore").text(Math.floor(totalmoney));
-			$("#total").text(Math.floor(totaldiscount));
-
 			sessionStorage.setItem('perval', perval);
 			sessionStorage.setItem('totaldiscount', Math.floor(totaldiscount));
+			$('#loader').attr({
+				'class' : 'loader'
+			}).submit();
+
+			setTimeout(function() {
+				$('#loader').attr({
+					'class' : ''
+				}).submit();
+				$("#join").text(Math.floor(joinmoney));
+				$("#pay1").text(Math.floor(paymoney1));
+				$("#pay2").text(Math.floor(paymoney2));
+				$("#pay3").text(Math.floor(paymoney3));
+				$("#pay4").text(Math.floor(paymoney4));
+				$("#totalbefore").text(Math.floor(totalmoney));
+				$("#total").text(Math.floor(totaldiscount));
+				if (typeval == 12) {
+					$("#typeshow").text("연간");
+					sessionStorage.setItem('typeval', '연납');
+				} else {
+					sessionStorage.setItem('typeval', '월납');
+				}
+
+			}, 1500);
 		}
 	</script>
 </body>

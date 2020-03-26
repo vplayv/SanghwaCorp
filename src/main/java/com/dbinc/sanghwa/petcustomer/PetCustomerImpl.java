@@ -1,5 +1,10 @@
 package com.dbinc.sanghwa.petcustomer;
 
+
+
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -103,5 +108,9 @@ public class PetCustomerImpl implements PetCustomerDAO {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public List<GenderStatVO> genderStat() throws Exception {
+		return session.selectList(NameSpace + "genderStat");
 	}
 }

@@ -18,7 +18,7 @@
 <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
 <!-- Generated: 2019-04-04 16:55:45 +0200 -->
-<title>index</title>
+<title>TEST</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 <!-- include -->
@@ -57,9 +57,60 @@
       				 	이메일 : <c:out value="${sessionScope.user.c_email}" />
 					</c:when>
 					<c:otherwise>
-						hello world
 						<!-- <meta http-equiv='refresh' content='0;url=login'> -->
-				</c:otherwise>
+						<div class="col-lg-6 col-xl-4">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Chart name</h3>
+								</div>
+								<div class="card-body">
+									<div id="chart-donut" style="height: 16rem"></div>
+								</div>
+							</div>
+							<script>
+								require(
+										[ 'c3', 'jquery' ],
+										function(c3, $) {
+											$(document)
+													.ready(
+															function() {
+																var chart = c3
+																		.generate({
+																			bindto : '#chart-donut', // id of chart wrapper
+																			data : {
+																				columns : [
+																						// each columns data
+																						[
+																								'data1',
+																								63 ],
+																						[
+																								'data2',
+																								37 ] ],
+																				type : 'donut', // default type of chart
+																				colors : {
+																					'data1' : tabler.colors["green"],
+																					'data2' : tabler.colors["green-light"]
+																				},
+																				names : {
+																					// name of each serie
+																					'data1' : 'Maximum',
+																					'data2' : 'Minimum'
+																				}
+																			},
+																			axis : {},
+																			legend : {
+																				show : false, //hide legend
+																			},
+																			padding : {
+																				bottom : 0,
+																				top : 0
+																			},
+																		});
+															});
+										});
+							</script>
+						</div>
+					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>

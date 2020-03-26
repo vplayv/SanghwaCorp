@@ -1,5 +1,6 @@
 package com.dbinc.sanghwa.petcustomer;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +34,22 @@ public class PetCustomerController {
 		log.info("index");
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/empty", method = RequestMethod.GET)
 	public String empty(Locale locale, Model model) {
 		log.info("empty");
+		try {
+			JSONArray jArray = new JSONArray();
+			List<GenderStatVO> list = userImpl.genderStat();
+			for (int i = 0; i < list.size(); i++) {
+		        JSONObject data= new JSONObject();
+		        //data.put("user_id", list.get(i).getUser_id());
+		        jArray.add(i, data);;
+		    }
+			//JSONArray JsonArray = (JSONArray) genreJsonObject.get("resultList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "empty";
 	}
 

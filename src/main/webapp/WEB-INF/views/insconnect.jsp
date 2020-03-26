@@ -25,9 +25,9 @@
 <script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
 <script src="./assets/js/require.min.js"></script>
 <script>
-        requirejs.config({
-                baseUrl : '.'
-        });
+	requirejs.config({
+		baseUrl : '.'
+	});
 </script>
 <!-- Dashboard Core -->
 <link href="assets/css/dashboard.css" rel="stylesheet" />
@@ -82,13 +82,10 @@
 
 									<div class="form-footer">
 										<button type="button" onclick="cuschk();" id="connectbtn" class="btn btn-success btn-block" style="width: 120px; margin-left: 85px;">연동하기</button>
-
 									</div>
 								</div>
 							</form>
-
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -96,93 +93,89 @@
 		<%@ include file="footer.jsp"%>
 	</div>
 	<script>
-        
-        $(function() {
-                var json = {
-                        'c_id' : '${sessionScope.user.c_id}'
-                };
-                console.log(json);
-                $.get("selectpetinput", json, function(data) {
-                        console.log(data);
-                        var obj2 = eval("(" + data + ")");
-                        console.log(obj2);
-                        
-                        $.each(obj2, function(key, value){
-                                $("#callpet").append(
-                                                "<option value=\"" + obj2[key].p_name + "\">"
-                                                                + obj2[key].p_name + "</option>");
-                
-            });
-                        
+		$(function() {
+			var json = {
+				'c_id' : '${sessionScope.user.c_id}'
+			};
+			console.log(json);
+			$.get("selectpetinput", json, function(data) {
+				console.log(data);
+				var obj2 = eval("(" + data + ")");
+				console.log(obj2);
 
-                })
+				$.each(obj2, function(key, value) {
+					$("#callpet").append(
+							"<option value=\"" + obj2[key].p_name + "\">"
+									+ obj2[key].p_name + "</option>");
 
-                $("#callpet").change(function() {
-                        s = $("#callpet > option:selected").val();
-                        $.get("selectpetinfo", {
-                                'p_name' : s
-                        }, function(data) {
-                                console.log(data)
-                                var obj = eval("(" + data + ")");
-                                sessionStorage.setItem('p_name', obj[0].p_name);
-                                sessionStorage.setItem('p_type', obj[0].p_type);
-                                sessionStorage.setItem('p_birth', obj[0].p_birth);
-                                
-                        })
-                });
+				});
 
-        })
-        
-        $("#cusinfochk").on("click",function (){
-                if ($("#cusinfochk:checked").length > 0) {
-                        var json = {
-                                        'c_id' : '${sessionScope.user.c_id}'
-                                };
-                                console.log(json);
-                                $.get("selectcusinfo", json, function(data) {
-                                        console.log(data);
-                                        var cusobj = eval("(" + data + ")");
-                                        console.log(cusobj);
-                                        $("#c_name").val(cusobj[0].c_name);
-                                        $("#c_pid").val(cusobj[0].c_pid);
-                });
-                }
-                else {
-                        $("#c_name").val("");
-                        $("#c_pid").val("");
-                }
-        })
+			})
 
-        function cuschk() {
-                var c_name = $("#c_name").val();
-                var c_pid = $("#c_pid").val();
-                sessionStorage.setItem('c_pid', c_pid);
-                var compare;
-                var json = {'c_pid' : c_pid};
-                $.get("selectcompare", json, function(data) {
-                        var conobj = eval("(" + data + ")");
-                        console.log(conobj[0].c_name);
-                        if(conobj[0].c_name == c_name && c_pid == conobj[0].c_pid){
-                                compare = 2;
-                        }
-                }).then(function() {
-                        if (c_name=="" || c_pid=="") {
-                                alert("고객 정보를 입력하세요.")
+			$("#callpet").change(function() {
+				s = $("#callpet > option:selected").val();
+				$.get("selectpetinfo", {
+					'p_name' : s
+				}, function(data) {
+					console.log(data)
+					var obj = eval("(" + data + ")");
+					sessionStorage.setItem('p_name', obj[0].p_name);
+					sessionStorage.setItem('p_type', obj[0].p_type);
+					sessionStorage.setItem('p_birth', obj[0].p_birth);
 
-                        }
-                        else if(compare != 2){
-                                alert("고객 정보가 일치하지 않습니다.")
-                        }
-                        else{
-                                
-                                $('#cusform').attr({
-                                        'action' : 'insconshow'
-                                }).submit();
-                        }                                
-                });
-                        
+				})
+			});
 
-        }
-        </script>
+		})
+
+		$("#cusinfochk").on("click", function() {
+			if ($("#cusinfochk:checked").length > 0) {
+				var json = {
+					'c_id' : '${sessionScope.user.c_id}'
+				};
+				console.log(json);
+				$.get("selectcusinfo", json, function(data) {
+					console.log(data);
+					var cusobj = eval("(" + data + ")");
+					console.log(cusobj);
+					$("#c_name").val(cusobj[0].c_name);
+					$("#c_pid").val(cusobj[0].c_pid);
+				});
+			} else {
+				$("#c_name").val("");
+				$("#c_pid").val("");
+			}
+		})
+
+		function cuschk() {
+			var c_name = $("#c_name").val();
+			var c_pid = $("#c_pid").val();
+			sessionStorage.setItem('c_pid', c_pid);
+			var compare;
+			var json = {
+				'c_pid' : c_pid
+			};
+			$.get("selectcompare", json, function(data) {
+				var conobj = eval("(" + data + ")");
+				console.log(conobj[0].c_name);
+				if (conobj[0].c_name == c_name && c_pid == conobj[0].c_pid) {
+					compare = 2;
+				}
+			}).then(function() {
+				if (c_name == "" || c_pid == "") {
+					alert("고객 정보를 입력하세요.")
+
+				} else if (compare != 2) {
+					alert("고객 정보가 일치하지 않습니다.")
+				} else {
+
+					$('#cusform').attr({
+						'action' : 'insconshow'
+					}).submit();
+				}
+			});
+
+		}
+	</script>
 </body>
 </html>

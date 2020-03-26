@@ -75,7 +75,7 @@
 								<div class="card-status bg-green"></div>
 								<div class="col-lg-12 text-center">
 									<a class="header-brand" href="./index">
-										<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
+										<img src="demo/photos/dbpetlogo.png" " class="header-brand-img" alt="dbpet logo">
 									</a>
 								</div>
 							</div>

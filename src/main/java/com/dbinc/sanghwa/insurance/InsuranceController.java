@@ -139,6 +139,36 @@ public class InsuranceController {
 		}
 	}
 
+	@RequestMapping(value = "/selectper", method = { RequestMethod.GET, RequestMethod.POST })
+	public void selectper(HttpServletResponse response, Model model) {
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			String jsonStr = db.selectPer();
+			if (jsonStr != null) {
+				out.print(jsonStr);
+				out.flush();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping(value = "/selectper2", method = { RequestMethod.GET, RequestMethod.POST })
+	public void selectper2(HttpServletResponse response, Model model) {
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			String jsonStr = db.selectPerpay();
+			if (jsonStr != null) {
+				out.print(jsonStr);
+				out.flush();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@RequestMapping(value = "/selectpetinput", method = { RequestMethod.GET, RequestMethod.POST })
 	public void selectpetinput(HttpServletResponse response, Model model, @RequestParam String c_id) {
 		response.setContentType("text/html; charset=UTF-8");

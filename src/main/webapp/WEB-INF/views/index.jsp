@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ page session="false"%> --%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -18,7 +17,7 @@
 <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
 <!-- Generated: 2019-04-04 16:55:45 +0200 -->
-<title>index</title>
+<title>건강하개</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 <script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
@@ -51,12 +50,28 @@
 	left: 0;
 	background-size: cover;
 	background-position: 50% 50%;
-	background-image: url( "./demo/photos/dbpet_bg3.jpg" );
+	/* background-image: url( "./demo/photos/dbpet_bg3.jpg" ); */
 	background-repeat: repeat;
 	background-color: #ffffff;
 	opacity: 0.1 !important;
 	filter: alpha(opacity = 20);
 	z-index: -1;
+}
+
+#item-wrapper {
+	position: relative;
+	background-image: url( "./demo/photos/exp1.jpg" );
+	background-size: cover;
+	background-position: 50% 50%;
+	padding-top: 60px;
+	padding-bottom: 70px;
+	padding-right: 70px;
+}
+
+.item-info-box {
+	position: absolute;
+	left: 0;
+	bottom: 0.75em;
 }
 </style>
 <body class="">
@@ -66,57 +81,57 @@
 			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
 				<div class="fullscreen_bg2"></div>
-				<div class="container">
-					<div class="text-center mb-6">
-						<img src="demo/photos/petlogo.png" style="width: 300px;">
-					</div>
-					<div class="row row-cards">
-						<div class="col-lg-1"></div>
-						<div class="col-lg-10">
-							<form id="calcform" action="inscalmoney" method="POST">
-								<div class="card card-aside" style="margin-left: 0px;">
-									<div class="col-lg-7 text-center">
-										<img src="demo/photos/dbins_petmain.PNG" class="rounded" style="margin-left: 0%; margin-top: 10%;">
-									</div>
-									<div class="col-lg-5 ">
-										<div class="card-body d-flex flex-column" style="margin-left: 0%;">
-											<div class="card-title">반려견 정보 입력하기</div>
-											<div class="form-group">
-												<label class="form-label">이름</label>
-												<input type="text" class="form-control" name="p_name" id="p_name">
-											</div>
-											<div class="form-group">
-												<label class="form-label">견종</label>
-												<select name="petinput" id="petinput" class="form-control custom-select">
-													<option value="maltese">말티즈</option>
-													<option value="poodle">푸들</option>
-													<option value="shitzu">시츄</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label class="form-label">생일</label>
-												<input type="date" class="form-control custom-select" name="birthinput" id="birthinput">
-											</div>
-											<div class="form-group">
-												<label class="form-label" style="color: gray;">회원이라면</label>
-												<select name="callpet" id="callpet" class="form-control custom-select">
-													<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
-												</select>
-											</div>
-											<div class="form-footer">
-												<button type="submit" class="btn btn-success btn-block" id="paychk" onclick="setfn();">보험료 확인</button>
-											</div>
+				<div class="row row-cards" id="item-wrapper">
+					<div class="col-lg-1"></div>
+					<div class="col-lg-5">
+						<form id="calcform" action="index" method="POST">
+							<div class="card" id="item-info-box" style="width: 400px; margin-left: 170px;">
+								<div>
+									<div class="card-body" style="margin-left: 0%;">
+										<div class="card-title">반려견 정보 입력하기</div>
+										<div class="form-group">
+											<label class="form-label">이름</label>
+											<input type="text" class="form-control" name="p_name" id="p_name">
+										</div>
+										<div class="form-group">
+											<label class="form-label">견종</label>
+											<select name="petinput" id="petinput" class="form-control custom-select">
+												<option value="maltese">말티즈</option>
+												<option value="poodle">푸들</option>
+												<option value="shitzu">시츄</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label class="form-label">생일</label>
+											<input type="date" class="form-control custom-select" name="birthinput" id="birthinput">
+										</div>
+										<div class="form-group">
+											<label class="form-label" style="color: gray;">회원이라면</label>
+											<select name="callpet" id="callpet" class="form-control custom-select">
+												<option value="defalutsel" disabled selected>반려견 정보 불러오기</option>
+											</select>
+										</div>
+										<div class="form-footer">
+											<button type="button" class="btn btn-success btn-block" id="paychk" onclick="setfn();">보험료 확인</button>
 										</div>
 									</div>
 								</div>
-							</form>
-						</div>
-						<div class="col-lg-1"></div>
+							</div>
+						</form>
 					</div>
+					<div class="col-lg-1"></div>
 				</div>
 			</div>
+			<div class="row">
+				<img src="./demo/photos/exp2.jpg">
+
+			</div>
+			<div class="row">
+				<img src="./demo/photos/exp3.jpg">
+			</div>
 		</div>
-		<%@ include file="footer.jsp"%>
+	</div>
+	<%@ include file="footer.jsp"%>
 	</div>
 	<script>
 		$(function() {

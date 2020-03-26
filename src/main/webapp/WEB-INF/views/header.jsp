@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="d-flex">
 			<a class="header-brand" href="./index">
-				<img src="demo/brand/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
+				<img src="demo/photos/dbpetlogo.png" class="header-brand-img" alt="dbpet logo">
 			</a>
 			<div class="d-flex order-lg-2 ml-auto">
 				<c:choose>

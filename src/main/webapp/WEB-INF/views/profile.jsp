@@ -91,7 +91,7 @@
 													<div class="card-title center">회원 정보</div>
 													<div class="row">
 														<div class="col-auto">
-															<span class="avatar avatar-xl" style="background-image: url(demo/faces/female/9.jpg)"></span>
+															<span class="avatar avatar-xl" style="background-image: url(./demo/photos/basicprofile.png)"></span>
 														</div>
 														<div class="col">
 															<div class="form-group">

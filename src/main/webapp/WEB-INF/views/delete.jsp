@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ page session="false"%> --%>
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -19,31 +18,26 @@
 <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
 <!-- Generated: 2019-04-04 16:55:45 +0200 -->
-<title>index</title>
+<title>건강하개</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-<script src="./assets/js/vendors/jquery-3.2.1.min.js"></script>
+<script src="assets/js/vendors/jquery-3.2.1.min.js"></script>
 <script src="assets/js/require.min.js"></script>
 <script>
 	requirejs.config({
 		baseUrl : '.'
 	});
 </script>
-<!-- Dashboard Core -->
 <link href="assets/css/dashboard.css" rel="stylesheet" />
 <script src="assets/js/dashboard.js"></script>
-<!-- c3.js Charts Plugin -->
 <link href="assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
 <script src="assets/plugins/charts-c3/plugin.js"></script>
-<!-- Google Maps Plugin -->
 <link href="assets/plugins/maps-google/plugin.css" rel="stylesheet" />
 <script src="assets/plugins/maps-google/plugin.js"></script>
-<!-- Input Mask Plugin -->
 <script src="assets/plugins/input-mask/plugin.js"></script>
-<!-- Datatables Plugin -->
 <script src="assets/plugins/datatables/plugin.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="./assets/js/postcode.v2.js"></script>
+<script src="assets/js/postcode.v2.js"></script>
 </head>
 <body class="">
 	<div class="page">
@@ -78,7 +72,6 @@
 										</a>
 									</div>
 								</div>
-
 								<div class="col-9">
 									<div class="card">
 										<div class="card-header">

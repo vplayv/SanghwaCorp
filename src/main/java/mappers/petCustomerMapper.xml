@@ -64,12 +64,22 @@
 		where c_id = #{c_id}
 		]]>
 	</update>
-	
+
 	<delete id="userDelete"
-	parameterType="com.dbinc.sanghwa.petcustomer.PetCustomerVO">
+		parameterType="com.dbinc.sanghwa.petcustomer.PetCustomerVO">
 	<![CDATA[
 		delete from pet_customer
 		where c_id = #{c_id}
 	]]>
 	</delete>
+
+	<select id="genderStat"
+		resultType="com.dbinc.sanghwa.petcustomer.GenderStatVO">
+	<![CDATA[
+		select c_gender as gender, round((count(c_gender)* 100 / (select count(*) from pet_customer)), 0) as pergender
+		from pet_customer
+		group by c_gender
+	]]>
+	</select>
+	
 </mapper>
