@@ -49,7 +49,7 @@
 	$(function draw() {
 		mapContainer = document.getElementById('map'), // 지도의 중심좌표
 		mapOption = {
-			center : new kakao.maps.LatLng(37.5454141, 126.9420453), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(37.5665591, 126.9583245), // 지도의 중심좌표
 			level : 5
 		// 지도의 확대 레벨
 		};
@@ -171,9 +171,9 @@
 									<h3 class="card-title">병원 리스트</h3>
 								</div>
 								<div class="card-body">
-									<div class="table-responsive">
-										<div class="overflow-auto" style="weight: 300px; height: 700px;">
-											<table id="calctable" class="table card-table table-striped" style="height: 700px;">
+									<div class="overflow-auto" style="weight: 300px; height: 700px;">
+										<div class="table-responsive">
+											<table id="calctable" class="table card-table table-striped">
 												<tbody>
 												</tbody>
 											</table>
@@ -183,23 +183,31 @@
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-6">
-							<div class="card">
+							<div class="card" style="height: 810px;">
 								<div class="card-header">
-									<div style="margin-left: 330px;">
-										<input name="color" type="checkbox" id="check" value="true">지정병원만 검색하기 <input type="text" id="search_data" placeholder="주소를 입력하세요...">
+									<div class="col-lg-1 col-xl-6"></div>
+									<div style="display: inline-block; text-align: right">
+										<input name="color" type="checkbox" id="check" value="true">지정병원 검색 <input type="text" id="search_data" placeholder="주소를 입력하세요...">
 										<button onclick="search()" class="btn btn-success">검색</button>
+
 									</div>
 								</div>
-								<div class="card-body" style="text-align: center; width: 750px; height: 750px;">
-									<div id="map" style="width: 720px; height: 700px;"></div>
+								<div class="card-body" style="text-align: center; width: 100%; height: 100%;">
+									<div class="map" style="height: 700px;">
+										<div class="map-content">
+											<div class="jvectormap-container" style="background-color: transparent;">
+												<div id="map" style="width: 100%; height: 100%;"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%@ include file="footer.jsp"%>
 		</div>
-		<%@ include file="footer.jsp"%>
 	</div>
 </body>
 </html>

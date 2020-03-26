@@ -71,65 +71,92 @@
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
 			<div class="my-3 my-md-5">
+
 				<div class="container">
-					<h2>자주묻는 질문과 답변</h2>
-					<br>
-					<p>
-						총 <strong>${listCnt}</strong>건 <strong>${pageCnt}</strong>페이지 <br>
-						<button onclick="main()">목록으로 돌아가기</button>
-					</p>
-					<div class="panel-group" id="accordion">
-						<c:forEach var="item" items="${list}" varStatus="status">
-							<div class="panel panel-default">
-								<div class="panel-heading" id="heading${status.count}" role="tab" style="padding: 10px;">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}" aria-expanded="false" aria-controls="collapse${status.count}">
-											${item.qeustion} <i class="pull-right fa fa-plus"></i>
-										</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="collapse${status.count}" role="tabpanel" aria-labelledby="heading${status.count}">
-									<div class="panel-body" style="padding: 10px;">
-										<p>${item.answer}</p>
+					<div class="row">
+						<div class="col-12">
+							<h2>
+								자주묻는 질문과 답변
+								<button onclick="main()" class="btn btn-outline-secondary">목록으로 돌아가기</button>
+							</h2>
+							<br>
+
+							<!-- <div class="header collapse d-lg-flex p-0" id ="headerMenuCollapse"> -->
+							<!-- <div class="container"> -->
+
+
+
+							<!-- </div> -->
+							<!-- </div> -->
+
+
+
+							<div class="panel-group" id="accordion">
+								<c:forEach var="item" items="${list}" varStatus="status">
+
+									<div class="panel panel-default">
+										<div class="panel-heading" id="heading${status.count}" role="tab" style="padding: 20px;">
+											<h4 class="panel-title">
+												<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}" aria-expanded="false" aria-controls="collapse${status.count}">
+													${item.qeustion} <i class="pull-right fa fa-plus"></i>
+												</a>
+											</h4>
+										</div>
+										<div class="panel-collapse collapse" id="collapse${status.count}" role="tabpanel" aria-labelledby="heading${status.count}">
+											<div class="panel-body" style="padding: 10px;">
+												<p>${item.answer}</p>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</div>
-					<!-- pagination{s} -->
-					<div class="text-center" style="text-align: center">
-						<div id="paginationBox" style="text-align: center">
-
-							<ul class="pagination">
-								<c:if test="${pagination.prev}">
-
-									<li class="page-item">
-										<%--<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a> --%> <a class="page-link" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
-									</li>
-
-								</c:if>
-
-								<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-
-									<%--<c:forEach begin="1" end="5" var="idx"> --%>
-
-									<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> <%-- <a class="page-link" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> --%></li>
 
 								</c:forEach>
 
-								<c:if test="${pagination.next}">
+							</div>
 
-									<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a> <%-- <a class="page-link" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a> --%></li>
+							<!-- pagination{s} -->
+							<br>
+							<div class="card-title" style="text-align: center;">
+								총 <strong>${listCnt}</strong>건 <strong>${pageCnt}</strong>페이지 <br>
+							</div>
 
-								</c:if>
-							</ul>
+							<div id="paginationBox" style="text-align: center;">
+								<ul class="pagination" style="display: inline-block;">
+
+									<c:if test="${pagination.prev}">
+
+										<li class="page-item">
+											<%--<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a> --%> <a class="page-link" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
+										</li>
+									</c:if>
+
+									<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+
+										<%--<c:forEach begin="1" end="5" var="idx"> --%>
+
+										<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> <%-- <a class="page-link" onClick="fn_pagination('${idx}', '${pagination.range}')"> ${idx} </a> --%></li>
+
+									</c:forEach>
+
+									<c:if test="${pagination.next}">
+
+										<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a> <%-- <a class="page-link" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a> --%></li>
+
+									</c:if>
+
+								</ul>
+							</div>
+
+							<div style="text-align: center">
+
+								<input type="text" id="search_data" placeholder="검색어 입력..." value="${search}">
+								<button onclick="fn_search()" class="btn btn-success">검색</button>
+								<%-- <button onclick="view('${pagination.page}', '${pagination.range}')" class="btn btn-success">검색</button> --%>
+
+								<!-- pagination{e} -->
+
+							</div>
+
 						</div>
-					</div>
-					<div style="text-align: center">
-						<input type="text" id="search_data" placeholder="검색어 입력..." value="${search}">
-						<%-- <button onclick="view('${pagination.page}', '${pagination.range}')" class="btn btn-success">검색</button> --%>
-						<button onclick="fn_search()" class="btn btn-success">검색</button>
-						<!-- pagination{e} -->
 					</div>
 				</div>
 			</div>
