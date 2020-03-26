@@ -54,8 +54,7 @@
 								<div class="alert alert-primary" style="margin-left: 0px;">
 									<div class="card-status card-status-left bg-blue"></div>
 									<div class="card-body" style="padding-top: 5px; padding-bottom: 5px;">
-										<span style="font-size: 20px;">아이(I)러브(LOVE)펫보험1904</span>
-										<span id="p_name"></span>, <span id="p_age"></span>세, <span id="p_type"></span>
+										<span style="font-size: 20px;">아이(I)러브(LOVE)펫보험1904</span> <span id="p_name"></span>, <span id="p_age"></span>세, <span id="p_type"></span>
 									</div>
 								</div>
 							</div>
@@ -187,7 +186,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-lg-6 col-xl-6">
+							<div class="col-lg-6 col-xl-4">
 								<div class="card">
 									<div class="card-header">
 										<h3 class="card-title">자기 부담금</h3>
@@ -250,7 +249,7 @@
 																				},
 																				axis : {},
 																				legend : {
-																					show : false, //hide legend
+																					show : true, //hide legend
 																				},
 																				padding : {
 																					bottom : 0,
@@ -263,8 +262,7 @@
 													});
 								</script>
 							</div>
-
-							<div class="col-lg-6 col-xl-6">
+							<div class="col-lg-6 col-xl-4">
 								<div class="card">
 									<div class="card-header">
 										<h3 class="card-title">보상 비율</h3>
@@ -289,7 +287,6 @@
 													})
 											.then(
 													function() {
-
 														require(
 																[ 'c3',
 																		'jquery' ],
@@ -320,7 +317,7 @@
 																				},
 																				axis : {},
 																				legend : {
-																					show : false, //hide legend
+																					show : true, //hide legend
 																				},
 																				padding : {
 																					bottom : 0,

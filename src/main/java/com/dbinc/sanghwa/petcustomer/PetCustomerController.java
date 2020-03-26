@@ -1,5 +1,6 @@
 package com.dbinc.sanghwa.petcustomer;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,20 +37,7 @@ public class PetCustomerController {
 	}
 
 	@RequestMapping(value = "/empty", method = RequestMethod.GET)
-	public String empty(Locale locale, Model model) {
-		log.info("empty");
-		try {
-			JSONArray jArray = new JSONArray();
-			List<GenderStatVO> list = userImpl.genderStat();
-			for (int i = 0; i < list.size(); i++) {
-		        JSONObject data= new JSONObject();
-		        //data.put("user_id", list.get(i).getUser_id());
-		        jArray.add(i, data);;
-		    }
-			//JSONArray JsonArray = (JSONArray) genreJsonObject.get("resultList");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public String empty(Locale locale, Model model, HttpServletResponse response) {
 		return "empty";
 	}
 
@@ -125,5 +113,20 @@ public class PetCustomerController {
 		}
 		session.invalidate();
 		return "redirect:/index";
+	}
+
+	@RequestMapping(value = "/genderStat", method = { RequestMethod.GET, RequestMethod.POST })
+	public void genderStat(HttpServletResponse response, Model model) {
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			String jsonStr = userImpl.genderStat();
+			if (jsonStr != null) {
+				out.print(jsonStr);
+				out.flush();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

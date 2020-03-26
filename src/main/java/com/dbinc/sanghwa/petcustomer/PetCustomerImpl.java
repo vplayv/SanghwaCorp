@@ -1,7 +1,7 @@
 package com.dbinc.sanghwa.petcustomer;
 
-
-
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -109,8 +111,21 @@ public class PetCustomerImpl implements PetCustomerDAO {
 			return -1;
 		}
 	}
-	
-	public List<GenderStatVO> genderStat() throws Exception {
-		return session.selectList(NameSpace + "genderStat");
+
+	public String genderStat() {
+		JSONArray jArray = new JSONArray();
+		try {
+			List<GenderStatVO> list = session.selectList(NameSpace + "genderStat");
+			for (int i = 0; i < list.size(); i++) {
+				JSONObject data = new JSONObject();
+				data.put("gender", list.get(i).getGender());
+				data.put("pergender", list.get(i).getPergender());
+				jArray.add(i, data);
+			}
+			return jArray.toJSONString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

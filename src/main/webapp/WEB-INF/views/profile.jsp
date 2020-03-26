@@ -64,17 +64,12 @@
 										<a href="profile" class="list-group-item list-group-item-action active">
 											<span class="icon mr-3"><i class="fe fe-user"></i></span>회원정보 수정
 										</a>
+
+										<a href="empty" class="list-group-item list-group-item-action ">
+											<span class="icon mr-3"><i class="fe fe-bar-chart-2"></i></span>기타 정보
+										</a>
 										<a href="delete" class="list-group-item list-group-item-action">
 											<span class="icon mr-3"><i class="fe fe-user-x"></i></span>계정 탈퇴
-										</a>
-										<a href="profile" class="list-group-item list-group-item-action">
-											<span class="icon mr-3"><i class="fe fe-bar-chart-2"></i></span>통계 예시..
-										</a>
-										<a href="profile" class="list-group-item list-group-item-action">
-											<span class="icon mr-3"><i class="fa fa-paw""></i></span>강아지 예시..
-										</a>
-										<a href="profile" class="list-group-item list-group-item-action">
-											<span class="icon mr-3"><i class="fa fa-address-book"></i></span>추가가능...
 										</a>
 									</div>
 								</div>
