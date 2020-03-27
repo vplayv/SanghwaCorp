@@ -70,7 +70,7 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="a" items="${arr}">
-										<div class="col-lg-3">
+										<div class="col-lg-auto">
 											<div class="card" style="text-align: center;">
 												<div class="card-header">
 													<h3>반려견 정보</h3>

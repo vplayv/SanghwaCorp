@@ -57,7 +57,7 @@
 							<img src="assets/images/browsers/dbpet.JPG">
 						</div>
 						<div class="card-footer">
-							<button type="button" onclick="location.href='./index' " class="btn btn-success">메인으로</button>
+							<button type="button" onclick="location.href='./petinfoshow' " class="btn btn-success">반려견 목록으로</button>
 						</div>
 					</div>
 				</div>

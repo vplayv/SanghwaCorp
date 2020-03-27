@@ -76,9 +76,13 @@
 
 								<div class="form-group">
 									<label class="form-label">견종</label>
-									<input type="text" name="p_type" id="p_type" class="form-control" value="<c:choose><c:when test="${a.p_type eq 'maltese'}">말티즈</c:when><c:when test="${a.p_type eq 'poodle'}">푸들</c:when><c:when test="${a.p_type eq 'shitzu'}">시츄</c:when></c:choose>">
+									<select name="p_type" id="p_type" class="form-control">
+										<option value="maltese" <c:if test="${a.p_type eq 'maltese'}">selected</c:if>>말티즈</option>
+										<option value="poodle" <c:if test="${a.p_type eq 'poodle'}">selected</c:if>>푸들</option>
+										<option value="shitzu" <c:if test="${a.p_type eq 'shitzu'}">selected</c:if>>시츄</option>
+									</select>
 								</div>
-
+								
 								<div class="form-group">
 									<label class="form-label">생일</label>
 									<input type="date" name="p_birth" id="p_birth" class="form-control" value="${a.p_birth}">

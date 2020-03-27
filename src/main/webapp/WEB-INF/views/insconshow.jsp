@@ -115,7 +115,7 @@
 			case "maltese":
 				$("#p_type").text("말티즈");
 				break;
-			case "sichu":
+			case "shitzu":
 				$("#p_type").text("시츄");
 				break;
 			}

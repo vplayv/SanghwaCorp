@@ -186,7 +186,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-lg-6 col-xl-4">
+							<div class="col-lg-6 col-xl-6">
 								<div class="card">
 									<div class="card-header">
 										<h3 class="card-title">자기 부담금</h3>
@@ -262,7 +262,7 @@
 													});
 								</script>
 							</div>
-							<div class="col-lg-6 col-xl-4">
+							<div class="col-lg-6 col-xl-6">
 								<div class="card">
 									<div class="card-header">
 										<h3 class="card-title">보상 비율</h3>

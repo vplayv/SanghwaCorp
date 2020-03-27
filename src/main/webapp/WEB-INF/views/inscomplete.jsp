@@ -46,22 +46,25 @@
 		<div class="flex-fill">
 			<%@ include file="header.jsp"%>
 			<%@ include file="menu.jsp"%>
+			<!-- complete -->
 			<div class="my-3 my-md-5">
 				<div class="container">
 					<div class="text-center mb-6">
 						<img src="demo/photos/petlogo.png" style="width: 300px;">
 					</div>
 					<div class="row" style="padding-left: 350px;">
-						<form id="calcform" action="insconnect" method="POST">
+						<form id="calcform" action="inscomplete" method="GET">
 							<div class="card">
-								<img class="card-img-top" src="./demo/photos/final.jpg" alt="And this isn&#39;t my nose. This is a false one.">
+								<img class="card-img-top" src="./demo/photos/final.jpg">
 								<div class="card-body d-flex flex-column">
 									<div style="font-size: 20px; text-align: center;">
 										사랑스러운 <span id="p_name" style="font-weight: bold;"></span>의 보험 가입을 환영합니다.
 									</div>
 									<div class="form-footer">
-										<button type="submit" id="connectbtn" class="btn btn-success btn-block" style="width: 200px; margin-left: 115px;">보험 연동하러 가기</button>
+										<button type="button" id="connectbtn" onclick="loginchk();" class="btn btn-success btn-block" style="width: 200px; margin-left: 115px;">보험 연동하러 가기</button>
+
 									</div>
+
 								</div>
 							</div>
 						</form>
@@ -72,7 +75,26 @@
 		<%@ include file="footer.jsp"%>
 	</div>
 	<script>
-		$("#p_name").text(sessionStorage.getItem("petname"));
+		$(function() {
+			$("#p_name").text(sessionStorage.getItem("petname"));
+		})
+		function loginchk() {
+			if ('${sessionScope.user.c_id}' == "") {
+				alert("로그인 후 이용해주세요.");
+				$('#calcform').attr({
+					'action' : 'login'
+				}).submit();
+			} else {
+				$('#calcform').attr({
+					'action' : 'insconnect'
+				}).submit();
+
+			}
+		}
 	</script>
 </body>
 </html>
+
+
+
+
