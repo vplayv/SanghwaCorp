@@ -1,4 +1,4 @@
 # SanghwaCorp
- DB INC Team Prioject
+ DB INC Team Project
  Project : 건강하개
  
